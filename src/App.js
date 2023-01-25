@@ -35,41 +35,7 @@ import Pitt from "./routes/Pitt";
 import Settings from "./routes/Settings";
 import SignUp from "./routes/SignUp";
 
-// Dashboard ("/")
-
-// PITT ("/pitt")
-
-// Indicator Overview ("/indicator-table")
-
-// Indicators ("/indicators")
-// Add Indicator ("/indicators/new")
-// View Indicator ("/indicators/:indicatorId")
-// Update Indicator ("/indicators/:indicatorId/edit")
-
-// People ("/contacts")
-// Add Person ("/contacts/new")
-// View Person ("/contacts/:contactId")
-// Update Person ("/contacts/:contactId/edit")
-
-// Organizations ("/orgs")
-// Add Organization ("/orgs/new")
-// View Organization ("/orgs/:orgId")
-// Update Organization ("/orgs/:orgId/edit")
-
-// Events ("/events")
-// Add Event ("/events/new")
-// View Event ("/events/:eventId")
-// Update Event ("/events/:eventId/edit")
-
-// Import Data ("/import")
-
-// Settings ("/settings")
-
-// Log In ("/login")
-
-// Sign Up ("/signup")
-
-const DummyFunction = () => null;
+const DummyFunction = () => undefined;
 
 function App() {
   const router = createBrowserRouter(
@@ -82,8 +48,135 @@ function App() {
           errorElement={<ErrorPage />}
         />
         <Route
+          path="/login"
+          element={<LogIn />}
+          loader={DummyFunction}
+          errorElement={<ErrorPage />}
+        />
+        <Route
+          path="/signup"
+          element={<SignUp />}
+          loader={DummyFunction}
+          errorElement={<ErrorPage />}
+        />
+        <Route
           path="/pitt"
           element={<Pitt />}
+          loader={DummyFunction}
+          errorElement={<ErrorPage />}
+        />
+        <Route
+          path="/indicator-table"
+          element={<IndicatorTableView />}
+          loader={DummyFunction}
+          errorElement={<ErrorPage />}
+        />
+        <Route
+          path="/indicators"
+          element={<IndicatorView />}
+          loader={DummyFunction}
+          errorElement={<ErrorPage />}
+        >
+          <Route
+            path="/new"
+            element={<AddIndicator />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/:indicatorId"
+            element={<IndicatorDetail />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/:indicatorId/edit"
+            element={<EditIndicator />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          />
+        </Route>
+        <Route
+          path="/contacts"
+          element={<ContactsView />}
+          loader={DummyFunction}
+          errorElement={<ErrorPage />}
+        >
+          <Route
+            path="/new"
+            element={<AddContact />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/:contactId"
+            element={<ContactDetail />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/:contactId/edit"
+            element={<EditContact />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          />
+        </Route>
+        <Route
+          path="/orgs"
+          element={<OrgsView />}
+          loader={DummyFunction}
+          errorElement={<ErrorPage />}
+        >
+          <Route
+            path="/new"
+            element={<AddOrg />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/:orgId"
+            element={<OrgDetail />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/:orgId/edit"
+            element={<EditOrg />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          />
+        </Route>
+        <Route
+          path="/events"
+          element={<EventsView />}
+          loader={DummyFunction}
+          errorElement={<ErrorPage />}
+        >
+          <Route
+            path="/new"
+            element={<AddEvent />}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/:eventId"
+            element={<EventDetail />}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/:eventId/edit"
+            element={<EditEvent />}
+            errorElement={<ErrorPage />}
+          />
+        </Route>
+        <Route
+          path="/settings"
+          element={<Settings />}
+          loader={DummyFunction}
+          errorElement={<ErrorPage />}
+        />
+        <Route
+          path="/import"
+          element={<ImportMenu />}
           loader={DummyFunction}
           errorElement={<ErrorPage />}
         />
