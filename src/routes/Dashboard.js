@@ -1,15 +1,15 @@
 import Nav from "../components/Nav";
 
+import "./Dashboard.css";
+
 const Dashboard = () => {
   return (
-    <>
-      <div>
-        <Nav />
-      </div>
-      <div>
+    <div id="dash">
+      <Nav />
+      <div id="dashMain">
         <h1>Main dashboard section</h1>
       </div>
-    </>
+    </div>
   );
 };
 

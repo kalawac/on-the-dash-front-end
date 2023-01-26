@@ -35,7 +35,7 @@ import Pitt from "./routes/Pitt";
 import Settings from "./routes/Settings";
 import SignUp from "./routes/SignUp";
 
-const DummyFunction = () => undefined;
+const DummyFunction = () => null;
 
 function App() {
   const router = createBrowserRouter(
@@ -78,19 +78,19 @@ function App() {
           errorElement={<ErrorPage />}
         >
           <Route
-            path="/new"
+            path="/indicators/new"
             element={<AddIndicator />}
             loader={DummyFunction}
             errorElement={<ErrorPage />}
           />
           <Route
-            path="/:indicatorId"
+            path="/indicators/:indicatorId"
             element={<IndicatorDetail />}
             loader={DummyFunction}
             errorElement={<ErrorPage />}
           />
           <Route
-            path="/:indicatorId/edit"
+            path="/indicators/:indicatorId/edit"
             element={<EditIndicator />}
             loader={DummyFunction}
             errorElement={<ErrorPage />}
@@ -103,19 +103,19 @@ function App() {
           errorElement={<ErrorPage />}
         >
           <Route
-            path="/new"
+            path="/contacts/new"
             element={<AddContact />}
             loader={DummyFunction}
             errorElement={<ErrorPage />}
           />
           <Route
-            path="/:contactId"
+            path="/contacts/:contactId"
             element={<ContactDetail />}
             loader={DummyFunction}
             errorElement={<ErrorPage />}
           />
           <Route
-            path="/:contactId/edit"
+            path="/contacts/:contactId/edit"
             element={<EditContact />}
             loader={DummyFunction}
             errorElement={<ErrorPage />}
@@ -128,19 +128,19 @@ function App() {
           errorElement={<ErrorPage />}
         >
           <Route
-            path="/new"
+            path="/orgs/new"
             element={<AddOrg />}
             loader={DummyFunction}
             errorElement={<ErrorPage />}
           />
           <Route
-            path="/:orgId"
+            path="/orgs/:orgId"
             element={<OrgDetail />}
             loader={DummyFunction}
             errorElement={<ErrorPage />}
           />
           <Route
-            path="/:orgId/edit"
+            path="/orgs/:orgId/edit"
             element={<EditOrg />}
             loader={DummyFunction}
             errorElement={<ErrorPage />}
@@ -153,17 +153,17 @@ function App() {
           errorElement={<ErrorPage />}
         >
           <Route
-            path="/new"
+            path="/events/new"
             element={<AddEvent />}
             errorElement={<ErrorPage />}
           />
           <Route
-            path="/:eventId"
+            path="/events/:eventId"
             element={<EventDetail />}
             errorElement={<ErrorPage />}
           />
           <Route
-            path="/:eventId/edit"
+            path="/events/:eventId/edit"
             element={<EditEvent />}
             errorElement={<ErrorPage />}
           />

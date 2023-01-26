@@ -1,0 +1,13 @@
+body {
+    background-color: #e7e6e4;
+}
+
+#dash {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100vw;
+    min-height: 100vh;
+}
