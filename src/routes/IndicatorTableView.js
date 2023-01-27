@@ -1,3 +1,5 @@
+import "./IndicatorTableView.css";
+
 const IndicatorTableView = () => {
   return (
     <div>

@@ -1,3 +1,5 @@
+import "./AddOrg.css";
+
 const AddOrg = () => {
   return (
     <div>

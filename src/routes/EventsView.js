@@ -1,3 +1,5 @@
+import "./EventsView.css";
+
 const EventsView = () => {
   return (
     <div>

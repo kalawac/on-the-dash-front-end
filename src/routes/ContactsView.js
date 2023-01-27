@@ -1,3 +1,5 @@
+import "./ContactsView.css";
+
 const ContactsView = () => {
   return (
     <div>

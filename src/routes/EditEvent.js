@@ -1,3 +1,5 @@
+import "./EditEvent.css";
+
 const EditEvent = () => {
   return (
     <div>

@@ -1,3 +1,5 @@
+import "./ContactDetail.css";
+
 const ContactDetail = () => {
   return (
     <div>

@@ -1,3 +1,5 @@
+import "./EditIndicator.css";
+
 const EditIndicator = () => {
   return (
     <div>

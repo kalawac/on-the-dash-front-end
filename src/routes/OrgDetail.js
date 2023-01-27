@@ -1,3 +1,5 @@
+import "./OrgDetail.css";
+
 const OrgDetail = () => {
   return (
     <div>

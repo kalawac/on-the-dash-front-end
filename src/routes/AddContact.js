@@ -1,3 +1,5 @@
+import "./AddContact.css";
+
 const AddContact = () => {
   return (
     <div>

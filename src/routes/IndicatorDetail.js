@@ -1,3 +1,5 @@
+import "./IndicatorDetail.css";
+
 const IndicatorDetail = () => {
   return (
     <div>

@@ -1,3 +1,5 @@
+import "./ImportMenu.css";
+
 const ImportMenu = () => {
   return (
     <div>

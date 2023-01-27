@@ -1,3 +1,5 @@
+import "./AddIndicator.css";
+
 const AddIndicator = () => {
   return (
     <div>

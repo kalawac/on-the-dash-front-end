@@ -7,8 +7,10 @@ import {
   Navigate,
 } from "react-router-dom";
 // import axios from "axios";
+// import rd3 from "react-d3-library";
 
 import "./App.css";
+import NavLayout from "./components/NavLayout";
 
 import AddContact from "./routes/AddContact";
 import AddEvent from "./routes/AddEvent";
@@ -41,12 +43,39 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route
-          path="/"
-          element={<Dashboard />}
-          loader={DummyFunction}
-          errorElement={<ErrorPage />}
-        />
+        <Route element={<NavLayout />}>
+          <Route
+            path="/"
+            element={<Dashboard />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/pitt"
+            element={<Pitt />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/indicator-table"
+            element={<IndicatorTableView />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/settings"
+            element={<Settings />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          />
+          <Route
+            path="/import"
+            element={<ImportMenu />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          />
+          <Route path="/404" element={<ErrorPage />} />
+        </Route>
         <Route
           path="/login"
           element={<LogIn />}
@@ -56,18 +85,6 @@ function App() {
         <Route
           path="/signup"
           element={<SignUp />}
-          loader={DummyFunction}
-          errorElement={<ErrorPage />}
-        />
-        <Route
-          path="/pitt"
-          element={<Pitt />}
-          loader={DummyFunction}
-          errorElement={<ErrorPage />}
-        />
-        <Route
-          path="/indicator-table"
-          element={<IndicatorTableView />}
           loader={DummyFunction}
           errorElement={<ErrorPage />}
         />
@@ -168,19 +185,7 @@ function App() {
             errorElement={<ErrorPage />}
           />
         </Route>
-        <Route
-          path="/settings"
-          element={<Settings />}
-          loader={DummyFunction}
-          errorElement={<ErrorPage />}
-        />
-        <Route
-          path="/import"
-          element={<ImportMenu />}
-          loader={DummyFunction}
-          errorElement={<ErrorPage />}
-        />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="*" element={<Navigate to="/404" replace />} />
       </>
     )
   );

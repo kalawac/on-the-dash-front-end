@@ -1,3 +1,5 @@
+import "./EditOrg.css";
+
 const EditOrg = () => {
   return (
     <div>

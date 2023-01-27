@@ -60,19 +60,25 @@ const Nav = () => {
           </div>
         </div>
       </div>
-      <Link to={`/import`}>
-        <button id="B2" className="navButton impButton">
-          Import Data
+      <div id="B2div">
+        <Link to={`/import`}>
+          <button id="B2" className="navButton impButton">
+            Import Data
+          </button>
+        </Link>
+      </div>
+      <div id="setButtonDiv">
+        <Link to={`/settings`}>
+          <button id="setButton" className="navButton">
+            Settings
+          </button>
+        </Link>
+      </div>
+      <div id="logButtonDiv">
+        <button id="logOut" className="navButton">
+          Log Out
         </button>
-      </Link>
-      <Link to={`/settings`}>
-        <button id="setButton" className="navButton">
-          Settings
-        </button>
-      </Link>
-      <button id="logOut" className="navButton">
-        Log Out
-      </button>
+      </div>
     </div>
   );
 };

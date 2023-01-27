@@ -1,0 +1,14 @@
+.vizsquare {
+    background-color: #8C8985;
+    width: 35vmin;
+    height: 35vmin;
+    align-items: center;
+    justify-content: center;
+    margin: 4vh 4vw;
+}
+
+.vizsquare img {
+    background-color: white;
+    width: 30vmin;
+    height:30vmin;
+}

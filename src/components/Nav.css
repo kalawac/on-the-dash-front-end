@@ -1,7 +1,8 @@
 #nav {
     background-color: #8C8985;
     position: sticky;
-    height: 100vh;
+    height: fit-content;
+    min-height: 100vh;
     width: clamp(120px, 15vw, 200px);
     min-width: fit-content;
     align-items: center;
@@ -17,8 +18,26 @@
 
 #B1B2Spacing {
     position: sticky;
-    top: 15vmin;
-    height: clamp(calc(4vmax + 17vw), 15vmin, 30vh);
+    top: 15vh;
+    height: clamp(calc(4vmax + 17vw), 15vh, 30vh);
+}
+
+#B2div {
+    position: sticky;
+    top: 40vh;
+    height: 4vmax;
+}
+
+#setButtonDiv {
+    position:sticky;
+    top:80vh;
+    height: 4vmax;
+}
+
+#logButtonDiv {
+    position:sticky;
+    top:90vh;
+    height: 4vmax;
 }
 
 #subnav {
@@ -74,11 +93,6 @@
     border:none;
 }
 
-#B2 {
-    position: relative;
-    margin-top: 15vmin;
-}
-
 .hiddenRow {
     display:none;
 }
@@ -123,17 +137,9 @@
     }
 } */
 
-#setButton {
-    position:relative;
-    margin-top:20vh;
-
-}
-
 #logOut {
     background-color: #205493;
     color: #CFCDC9;
-    position:relative;
-    margin-top:5vh;
 }
 
 #logOut:hover {

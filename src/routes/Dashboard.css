@@ -1,13 +1,16 @@
-body {
-    background-color: #e7e6e4;
-}
-
-#dash {
-    display: flex;
-    flex-direction: row;
+#dashMain {
     align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
-    width: 100vw;
+    min-width: 40vw;
+    max-width: 85vw;
     min-height: 100vh;
+    overflow-y: auto;
+}
+
+#vizUL {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

@@ -1,3 +1,5 @@
+import "./Pitt.css";
+
 const Pitt = () => {
   return (
     <div>

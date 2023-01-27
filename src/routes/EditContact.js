@@ -1,3 +1,5 @@
+import "./EditContact.css";
+
 const EditContact = () => {
   return (
     <div>

@@ -1,3 +1,5 @@
+import "./OrgsView.css";
+
 const OrgsView = () => {
   return (
     <div>

@@ -1,14 +1,18 @@
-import Nav from "../components/Nav";
+// import { useLoaderData } from "react-router-dom";
+
+import VizSquares from "../components/VizSquares";
 
 import "./Dashboard.css";
 
 const Dashboard = () => {
+  // const loaderData = useLoaderData();
+  // const vizArr = loaderData;
+
   return (
-    <div id="dash">
-      <Nav />
-      <div id="dashMain">
-        <h1>Main dashboard section</h1>
-      </div>
+    <div id="dashMain" className="flexR">
+      <ul id="vizUL">
+        <VizSquares />
+      </ul>
     </div>
   );
 };
