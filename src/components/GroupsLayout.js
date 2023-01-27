@@ -6,7 +6,9 @@ const GroupsLayout = () => {
   return (
     <div id="nl" className="flexR">
       <div id="listing" className="flexC"></div>
-      <Outlet id="content" />
+      <div id="details" className="flexC">
+        <Outlet />
+      </div>
     </div>
   );
 };
