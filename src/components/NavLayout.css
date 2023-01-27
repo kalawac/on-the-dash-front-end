@@ -10,3 +10,14 @@ body {
     height: 100vh;
     overflow: auto;
 }
+
+#navDiv {
+    width: fit-content;
+    height: 100vh;
+}
+
+#contentDiv {
+    width: fit-content;
+    height: 100vh;
+    overflow: auto;
+}
