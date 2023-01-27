@@ -10,30 +10,17 @@ import {
 // import rd3 from "react-d3-library";
 
 import "./App.css";
-import GroupsLayout from "./components/GroupsLayout";
 import NavLayout from "./components/NavLayout";
+import GroupDetail from "./routes/GroupDetail";
+import GroupView from "./routes/GroupView";
 
-import AddContact from "./routes/AddContact";
-import AddEvent from "./routes/AddEvent";
 import AddIndicator from "./routes/AddIndicator";
-import AddOrg from "./routes/AddOrg";
-import ContactDetail from "./routes/ContactDetail";
-import ContactsView from "./routes/ContactsView";
 import Dashboard from "./routes/Dashboard";
-import EditContact from "./routes/EditContact";
-import EditEvent from "./routes/EditEvent";
 import EditIndicator from "./routes/EditIndicator";
-import EditOrg from "./routes/EditOrg";
 import ErrorPage from "./routes/ErrorPage";
-import EventDetail from "./routes/EventDetail";
-import EventsView from "./routes/EventsView";
 import ImportMenu from "./routes/ImportMenu";
-import IndicatorDetail from "./routes/IndicatorDetail";
 import IndicatorTableView from "./routes/IndicatorTableView";
-import IndicatorView from "./routes/IndicatorView";
 import LogIn from "./routes/LogIn";
-import OrgDetail from "./routes/OrgDetail";
-import OrgsView from "./routes/OrgsView";
 import Pitt from "./routes/Pitt";
 import Settings from "./routes/Settings";
 import SignUp from "./routes/SignUp";
@@ -76,104 +63,32 @@ function App() {
             errorElement={<ErrorPage />}
           />
           <Route path="/404" element={<ErrorPage />} />
-          <Route element={<GroupsLayout />}>
+          <Route
+            path="/:groupName"
+            element={<GroupView />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          >
             <Route
-              path="/indicators"
-              element={<IndicatorView />}
+              path="new"
+              element={<AddIndicator />} // to be updated when I figure out
+              // the best way to navigate to the right element
               loader={DummyFunction}
               errorElement={<ErrorPage />}
-            >
-              <Route
-                path="/indicators/new"
-                element={<AddIndicator />}
-                loader={DummyFunction}
-                errorElement={<ErrorPage />}
-              />
-              <Route
-                path="/indicators/:indicatorId"
-                element={<IndicatorDetail />}
-                loader={DummyFunction}
-                errorElement={<ErrorPage />}
-              />
-              <Route
-                path="/indicators/:indicatorId/edit"
-                element={<EditIndicator />}
-                loader={DummyFunction}
-                errorElement={<ErrorPage />}
-              />
-            </Route>
+            />
             <Route
-              path="/contacts"
-              element={<ContactsView />}
+              path=":itemId"
+              element={<GroupDetail />}
               loader={DummyFunction}
               errorElement={<ErrorPage />}
-            >
-              <Route
-                path="/contacts/new"
-                element={<AddContact />}
-                loader={DummyFunction}
-                errorElement={<ErrorPage />}
-              />
-              <Route
-                path="/contacts/:contactId"
-                element={<ContactDetail />}
-                loader={DummyFunction}
-                errorElement={<ErrorPage />}
-              />
-              <Route
-                path="/contacts/:contactId/edit"
-                element={<EditContact />}
-                loader={DummyFunction}
-                errorElement={<ErrorPage />}
-              />
-            </Route>
+            />
             <Route
-              path="/orgs"
-              element={<OrgsView />}
+              path=":itemId/edit"
+              element={<EditIndicator />} // to be updated when I figure out
+              // the best way to navigate to the right element
               loader={DummyFunction}
               errorElement={<ErrorPage />}
-            >
-              <Route
-                path="/orgs/new"
-                element={<AddOrg />}
-                loader={DummyFunction}
-                errorElement={<ErrorPage />}
-              />
-              <Route
-                path="/orgs/:orgId"
-                element={<OrgDetail />}
-                loader={DummyFunction}
-                errorElement={<ErrorPage />}
-              />
-              <Route
-                path="/orgs/:orgId/edit"
-                element={<EditOrg />}
-                loader={DummyFunction}
-                errorElement={<ErrorPage />}
-              />
-            </Route>
-            <Route
-              path="/events"
-              element={<EventsView />}
-              loader={DummyFunction}
-              errorElement={<ErrorPage />}
-            >
-              <Route
-                path="/events/new"
-                element={<AddEvent />}
-                errorElement={<ErrorPage />}
-              />
-              <Route
-                path="/events/:eventId"
-                element={<EventDetail />}
-                errorElement={<ErrorPage />}
-              />
-              <Route
-                path="/events/:eventId/edit"
-                element={<EditEvent />}
-                errorElement={<ErrorPage />}
-              />
-            </Route>
+            />
           </Route>
         </Route>
         <Route

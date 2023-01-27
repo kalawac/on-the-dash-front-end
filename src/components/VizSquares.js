@@ -10,7 +10,7 @@ import viz7 from "../assets/ranking-star-solid.svg";
 
 const VizSquares = () => {
   const iconArr = [viz1, viz2, viz3, viz4, viz5, viz6, viz7];
-  console.log("yo!");
+
   return iconArr.map((viz, index) => {
     return (
       <li key={index}>

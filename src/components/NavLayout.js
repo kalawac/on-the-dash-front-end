@@ -7,12 +7,12 @@ import "./NavLayout.css";
 const NavLayout = () => {
   return (
     <div id="nl" className="flexR">
-      <div id="navDiv">
+      <nav id="navDiv">
         <Nav />
-      </div>
-      <div id="contentDiv">
+      </nav>
+      <main id="contentDiv">
         <Outlet />
-      </div>
+      </main>
     </div>
   );
 };

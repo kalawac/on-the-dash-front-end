@@ -4,6 +4,9 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- i
 
 import "./Nav.css";
 
+// check out UseNavLink when I want to indicate where the user is by applying a
+// different style to a button when a page is active
+
 const Nav = () => {
   return (
     <div id="nav" className="flexC">
@@ -15,42 +18,42 @@ const Nav = () => {
           <div id="viewContent" className={`flexR hiddenVC`}>
             <div className="row hiddenRow">
               <Link to={`/`}>
-                <button>
+                <button title="Dashboard">
                   <span className="fa-solid fa-classic fa-chart-column">
                     <FontAwesomeIcon icon={solid("chart-column")} />
                   </span>
                 </button>
               </Link>
               <Link to={`/pitt`}>
-                <button>
+                <button title="PITT">
                   <span className="fa-solid fa-classic fa-table-list">
                     <FontAwesomeIcon icon={solid("table-list")} />
                   </span>
                 </button>
               </Link>
               <Link to={`/indicator-table`}>
-                <button>
+                <button title="Indicators">
                   <span className="fa-solid fa-classic fa-list">
                     <FontAwesomeIcon icon={solid("list")} />
                   </span>
                 </button>
               </Link>
               <Link to={`/contacts`}>
-                <button>
+                <button title="Contacts">
                   <span className="fa-solid fa-classic fa-address-book">
                     <FontAwesomeIcon icon={solid("address-book")} />
                   </span>
                 </button>
               </Link>
               <Link to={`/orgs`}>
-                <button>
+                <button title="Organizations">
                   <span className="fa-solid fa-classic fa-people-roof">
                     <FontAwesomeIcon icon={solid("people-roof")} />
                   </span>
                 </button>
               </Link>
               <Link to={`/events`}>
-                <button>
+                <button title="Events">
                   <span className="fa-solid fa-classic fa-calendar-days">
                     <FontAwesomeIcon icon={solid("calendar-days")} />
                   </span>
