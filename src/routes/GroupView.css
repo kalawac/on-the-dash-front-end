@@ -2,19 +2,21 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    width: 100vw;
-    height: 100vh;
+    width: 85vw;
+    height: 100%;
     overflow: auto;
 }
 
 #listing {
     width: fit-content;
-    height: 100vh;
+    height: 100%;
+    width: 40%;
 }
 
 #details {
     width: fit-content;
-    height: 100vh;
+    height: 100%;
     overflow: auto;
     border: 5px solid green;
+    width: 60%;
 }

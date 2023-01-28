@@ -2,7 +2,7 @@ import { Outlet, Link, useParams } from "react-router-dom";
 
 import "./GroupView.css";
 
-import { nameObj } from "../components/DummyData";
+import { contacts, orgs } from "../components/DummyData";
 
 // const sample = () => {
 //   return (
@@ -42,8 +42,9 @@ import { nameObj } from "../components/DummyData";
 // };
 
 const GroupView = () => {
-  const elArr = nameObj;
   const { groupName } = useParams();
+
+  // const elArr = (groupName) => {};
 
   const groupTitle = (groupName) => {
     if (groupName === "contacts") {
@@ -59,22 +60,43 @@ const GroupView = () => {
     }
   };
 
-  const elList = elArr.map((el, index) => {
-    const navLink = ":".concat(el.id);
-    return (
-      <li key={index}>
-        <Link to={`${navLink}`} className="item">
-          {el.fname} {el.lname}
-        </Link>
-      </li>
-    );
-  });
+  const elList = (groupName) => {
+    if (groupName === "contacts") {
+      console.log("contacts");
+      return contacts.map((el, index) => {
+        return (
+          <li key={index}>
+            <Link to={`${el.id}`} className="item">
+              {el.fname} {el.lname}
+            </Link>
+          </li>
+        );
+      });
+    } else if (groupName === "events") {
+      return null;
+    } else if (groupName === "indicators") {
+      return null;
+    } else if (groupName === "orgs") {
+      console.log("orgs!");
+      return orgs.map((el, index) => {
+        return (
+          <li key={index}>
+            <Link to={`${el.id}`} className="item">
+              {el.name}
+            </Link>
+          </li>
+        );
+      });
+    } else {
+      return null;
+    }
+  };
 
   return (
     <div id="gl" className="flexR">
       <div id="listing" className="flexC">
         <h1>{groupTitle(groupName)}</h1>
-        {elList}
+        {elList(groupName)}
       </div>
       <div id="details" className="flexC">
         <Outlet />

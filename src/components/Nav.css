@@ -13,7 +13,7 @@
     width: clamp(100px, 12vw, 180px);
     height: 3vmax;
     border: 1px solid #6C6463;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 
 #B1B2Spacing {
