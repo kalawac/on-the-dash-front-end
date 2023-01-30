@@ -14,9 +14,9 @@ import NavLayout from "./components/NavLayout";
 import GroupDetail from "./routes/GroupDetail";
 import GroupView from "./routes/GroupView";
 
-import AddIndicator from "./routes/AddIndicator";
+import AddContact from "./routes/AddContact";
 import Dashboard from "./routes/Dashboard";
-import EditIndicator from "./routes/EditIndicator";
+import EditContact from "./routes/EditContact";
 import ErrorPage from "./routes/ErrorPage";
 import ImportMenu from "./routes/ImportMenu";
 import IndicatorTableView from "./routes/IndicatorTableView";
@@ -71,7 +71,7 @@ function App() {
           >
             <Route
               path="new"
-              element={<AddIndicator />} // to be updated when I figure out
+              element={<AddContact />} // to be updated when I figure out
               // the best way to navigate to the right element
               loader={DummyFunction}
               errorElement={<ErrorPage />}
@@ -84,7 +84,7 @@ function App() {
             />
             <Route
               path=":itemId/edit"
-              element={<EditIndicator />} // to be updated when I figure out
+              element={<EditContact />} // to be updated when I figure out
               // the best way to navigate to the right element
               loader={DummyFunction}
               errorElement={<ErrorPage />}

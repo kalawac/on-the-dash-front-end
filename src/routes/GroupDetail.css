@@ -1,7 +1,14 @@
 #gd {
     background-color: white;
     width: 100%;
-    height: 100%;
+    height: 100%;;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+}
+
+#detailContent {
+    grid-area: 1/1/13/13;
 }
 
 #dm1 {
@@ -10,8 +17,12 @@
     height: 12vw;
     max-height: 16vh;
     background-color: inherit;
+    grid-area: 1/12/4/13;
     position:sticky;
     top: 0;
-    right:0;
+    right: 0;
     z-index: 10;
+    justify-content: space-around;
+    align-items: flex-start;
 }
+

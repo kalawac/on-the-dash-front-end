@@ -20,12 +20,14 @@
     position: sticky;
     top: 15vh;
     height: clamp(calc(4vmax + 17vw), 15vh, 30vh);
+    z-index: 2;
 }
 
 #B2div {
     position: sticky;
     top: 40vh;
     height: 4vmax;
+    z-index: 0;
 }
 
 #setButtonDiv {
@@ -53,10 +55,10 @@
 #subnav:hover .hiddenVC {
     display: flex;
     flex-direction: row;
-    z-index: 1;
-    align-items: center;
-    justify-content: flex-start;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
     background-color: #A7C6ED;
     border: 1px solid #0067B9;
     border-radius: 1px;
@@ -97,7 +99,7 @@
     display:none;
 }
 
-.row button {
+.hiddenVC button {
     margin: 1vmin;
     width: 3vw;
     max-width: 4.5vh;
