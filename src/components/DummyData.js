@@ -1,15 +1,15 @@
-const groupNames = [
-  "Husein Wattana",
-  "Nechtan Kerper",
-  "Robert Winthrop",
-  "Anja McKenzie",
-  "Agata Iwasaki",
-  "Elikapeka Jansink",
-  "Borislav Aldershof",
-  "Dionisie Sargsyan",
-  "Zaki Vroomen",
-  "Raja Gautam",
-];
+// export const groupNames = [
+//   "Husein Wattana",
+//   "Nechtan Kerper",
+//   "Robert Winthrop",
+//   "Anja McKenzie",
+//   "Agata Iwasaki",
+//   "Elikapeka Jansink",
+//   "Borislav Aldershof",
+//   "Dionisie Sargsyan",
+//   "Zaki Vroomen",
+//   "Raja Gautam",
+// ];
 
 const orgs = [
   {
@@ -54,11 +54,15 @@ const orgs = [
   },
 ];
 
+// I'll have to build 'name' in the back end route on the basis of the sorting query.
+// so if they want last name first, we will return "lname, fname" as name.
+
 const contacts = [
   {
     id: "abcde1",
     fname: "Husein",
     lname: "Wattana",
+    name: "Husein Wattana",
     orgs: ["Hello World LLC"],
     orgIds: [8],
   },
@@ -66,6 +70,7 @@ const contacts = [
     id: "a1bcde",
     fname: "Nechtan",
     lname: "Kerper",
+    name: "Nechtan Kerper",
     orgs: ["Fish Tea", "Hello World LLC"],
     orgIds: [6, 8],
   },
@@ -73,6 +78,7 @@ const contacts = [
     id: "ab1cde",
     fname: "Robert",
     lname: "Winthrop",
+    name: "Robert Winthrop",
     orgs: [],
     orgIds: [],
   },
@@ -80,6 +86,7 @@ const contacts = [
     id: "abc1de",
     fname: "Anja",
     lname: "McKenzie",
+    name: "Anja McKenzie",
     orgs: ["Abel's Organization"],
     orgIds: [1],
   },
@@ -87,6 +94,7 @@ const contacts = [
     id: "abcd1e",
     fname: "Agata",
     lname: "Iwasaki",
+    name: "Agata Iwasaki",
     orgs: ["Hello World LLC"],
     orgIds: [8],
   },
@@ -94,6 +102,7 @@ const contacts = [
     id: "abcde1",
     fname: "Elikapeka",
     lname: "Jansink",
+    name: "Elikapeka Jansink",
     orgs: ["Babies for Boomerangs", "Catch Me!", "Gone for Good"],
     orgIds: [2, 3, 7],
   },
@@ -101,6 +110,7 @@ const contacts = [
     id: "abcde2",
     fname: "Borislav",
     lname: "Aldershof",
+    name: "Borislav Aldershof",
     orgs: ["Didja Know?", "Hello World LLC", "Jekyll & Hyde, Esq."],
     orgIds: [4, 8, 10],
   },
@@ -108,6 +118,7 @@ const contacts = [
     id: "a2bcde",
     fname: "Dionisie",
     lname: "Sargsyan",
+    name: "Dionisie Sargsyan",
     orgs: [],
     orgIds: [],
   },
@@ -115,6 +126,7 @@ const contacts = [
     id: "ab2cde",
     fname: "Zaki",
     lname: "Vroomen",
+    name: "Zaki Vroomen",
     orgs: ["Ignoramuses, Inc.", "Jekyll & Hyde, Esq."],
     orgIds: [9, 10],
   },
@@ -122,12 +134,36 @@ const contacts = [
     id: "abc2de",
     fname: "Raja",
     lname: "Gautam",
+    name: "Raja Gautam",
     orgs: ["Gone for Good"],
     orgIds: [7],
   },
 ];
 
-export { groupNames, contacts, orgs };
+const indicators = [
+  {
+    id: "1",
+    name: "Dummy Indicator 1",
+  },
+  {
+    id: "2",
+    name: "Dummy Indicator 2",
+  },
+];
+
+const events = [
+  {
+    id: "1",
+    name: "Dummy Event",
+  },
+];
+
+export const groupData = {
+  contacts: contacts,
+  events: events,
+  indicators: indicators,
+  orgs: orgs,
+};
 
 // <Route
 //   path="/indicators/new"

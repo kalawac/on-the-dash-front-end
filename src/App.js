@@ -10,6 +10,7 @@ import {
 // import rd3 from "react-d3-library";
 
 import "./App.css";
+
 import NavLayout from "./components/NavLayout";
 import GroupDetail from "./routes/GroupDetail";
 import GroupView from "./routes/GroupView";
@@ -25,7 +26,16 @@ import Pitt from "./routes/Pitt";
 import Settings from "./routes/Settings";
 import SignUp from "./routes/SignUp";
 
+import ContactDetail from "./components/ContactDetail";
+import EventDetail from "./components/EventDetail";
+import IndicatorDetail from "./components/IndicatorDetail";
+import OrgDetail from "./components/OrgDetail";
+
+import { groupData } from "./components/DummyData";
+
 const DummyFunction = () => null;
+
+const loadData = () => groupData;
 
 function App() {
   const router = createBrowserRouter(
@@ -66,13 +76,12 @@ function App() {
           <Route
             path="/:groupName"
             element={<GroupView />}
-            loader={DummyFunction}
+            loader={loadData}
             errorElement={<ErrorPage />}
           >
             <Route
               path="new"
-              element={<AddContact />} // to be updated when I figure out
-              // the best way to navigate to the right element
+              element={<AddContact />}
               loader={DummyFunction}
               errorElement={<ErrorPage />}
             />
@@ -84,8 +93,7 @@ function App() {
             />
             <Route
               path=":itemId/edit"
-              element={<EditContact />} // to be updated when I figure out
-              // the best way to navigate to the right element
+              element={<EditContact />}
               loader={DummyFunction}
               errorElement={<ErrorPage />}
             />

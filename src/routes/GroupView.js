@@ -1,8 +1,67 @@
-import { Outlet, Link, useParams } from "react-router-dom";
+import {
+  Outlet,
+  Link,
+  useParams,
+  useLoaderData,
+  useNavigate,
+} from "react-router-dom";
 
 import "./GroupView.css";
 
-import { contacts, orgs } from "../components/DummyData";
+const GroupView = () => {
+  const groupData = useLoaderData();
+  const { groupName } = useParams();
+  // const navigate = useNavigate();
+
+  const thisData = groupData[groupName];
+  // let selectedItem = [];
+
+  // const setDetailObj = (el) => {
+  //   console.log("clicked");
+  //   selectedItem.push(el);
+  //   console.log(selectedItem);
+  //   return navigate(`${el.id}`);
+  // };
+
+  const kTitle = {
+    contacts: "Contacts",
+    indicators: "Indicators",
+    events: "Events",
+    orgs: "Organizations",
+  };
+
+  const getList = (groupArr) => {
+    return groupArr.map((el, index) => {
+      return (
+        <li key={index} className="list-group-item list-group-item-action">
+          <Link
+            to={`${el.id}`}
+            // onClick={() => setDetailObj(el)}
+            className="item"
+          >
+            {el.name}
+          </Link>
+        </li>
+      );
+    });
+  };
+
+  return (
+    <div id="gl" className="flexR">
+      <div id="listing" className="container">
+        <h1>{kTitle[groupName]}</h1>
+        <ul id="groupList" className="list-group list-group-flush">
+          {getList(thisData)}
+        </ul>
+      </div>
+      <div id="details" className="flexC">
+        <Outlet context={[thisData]} />
+      </div>
+    </div>
+  );
+};
+
+export default GroupView;
 
 // const sample = () => {
 //   return (
@@ -40,69 +99,3 @@ import { contacts, orgs } from "../components/DummyData";
 //     </>
 //   );
 // };
-
-const GroupView = () => {
-  const { groupName } = useParams();
-
-  // const elArr = (groupName) => {};
-
-  const groupTitle = (groupName) => {
-    if (groupName === "contacts") {
-      return "Contacts";
-    } else if (groupName === "events") {
-      return "Events";
-    } else if (groupName === "indicators") {
-      return "Indicators";
-    } else if (groupName === "orgs") {
-      return "Organizations";
-    } else {
-      return "";
-    }
-  };
-
-  const elList = (groupName) => {
-    if (groupName === "contacts") {
-      console.log("contacts");
-      return contacts.map((el, index) => {
-        return (
-          <li key={index}>
-            <Link to={`${el.id}`} className="item">
-              {el.fname} {el.lname}
-            </Link>
-          </li>
-        );
-      });
-    } else if (groupName === "events") {
-      return null;
-    } else if (groupName === "indicators") {
-      return null;
-    } else if (groupName === "orgs") {
-      console.log("orgs!");
-      return orgs.map((el, index) => {
-        return (
-          <li key={index}>
-            <Link to={`${el.id}`} className="item">
-              {el.name}
-            </Link>
-          </li>
-        );
-      });
-    } else {
-      return null;
-    }
-  };
-
-  return (
-    <div id="gl" className="flexR">
-      <div id="listing" className="flexC">
-        <h1>{groupTitle(groupName)}</h1>
-        {elList(groupName)}
-      </div>
-      <div id="details" className="flexC">
-        <Outlet />
-      </div>
-    </div>
-  );
-};
-
-export default GroupView;
