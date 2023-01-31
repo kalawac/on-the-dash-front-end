@@ -8,6 +8,8 @@
     top: 0;
     right:0;
     z-index: 10;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 #dm button {
