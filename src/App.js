@@ -15,9 +15,9 @@ import NavLayout from "./components/NavLayout";
 import GroupDetail from "./routes/GroupDetail";
 import GroupView from "./routes/GroupView";
 
-import AddContact from "./routes/AddContact";
+import AddGroup from "./routes/AddGroup";
 import Dashboard from "./routes/Dashboard";
-import EditContact from "./routes/EditContact";
+import EditGroup from "./routes/EditGroup";
 import ErrorPage from "./routes/ErrorPage";
 import ImportMenu from "./routes/ImportMenu";
 import IndicatorTableView from "./routes/IndicatorTableView";
@@ -25,11 +25,6 @@ import LogIn from "./routes/LogIn";
 import Pitt from "./routes/Pitt";
 import Settings from "./routes/Settings";
 import SignUp from "./routes/SignUp";
-
-import ContactDetail from "./components/ContactDetail";
-import EventDetail from "./components/EventDetail";
-import IndicatorDetail from "./components/IndicatorDetail";
-import OrgDetail from "./components/OrgDetail";
 
 import { groupData } from "./components/DummyData";
 
@@ -81,7 +76,7 @@ function App() {
           >
             <Route
               path="new"
-              element={<AddContact />}
+              element={<AddGroup />}
               loader={DummyFunction}
               errorElement={<ErrorPage />}
             />
@@ -93,7 +88,7 @@ function App() {
             />
             <Route
               path=":itemId/edit"
-              element={<EditContact />}
+              element={<EditGroup />}
               loader={DummyFunction}
               errorElement={<ErrorPage />}
             />

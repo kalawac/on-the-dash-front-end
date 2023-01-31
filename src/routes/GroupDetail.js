@@ -8,15 +8,9 @@ const GroupDetail = () => {
   const [thisData] = useOutletContext();
   const { itemId } = useParams();
 
-  console.log(thisData);
-  console.log(itemId);
-
   const [thisItem] = thisData.filter((item) => {
     return item.id === itemId;
   });
-
-  console.log(thisItem);
-  console.log(thisItem.name);
 
   return (
     <div id="gd">
