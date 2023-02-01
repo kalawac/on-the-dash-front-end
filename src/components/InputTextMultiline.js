@@ -1,19 +1,20 @@
-import "./InputText.css";
+import "./InputTextMultiline.css";
 
-const InputText = (props) => {
+const InputTextMultiline = (props) => {
   const { field, fieldLabel, formData, changeFunc, required } = props;
 
   if (required) {
     return (
-      <div className="entryDiv">
+      <div className="entryMLDiv">
         <label htmlFor={field}>{fieldLabel}</label>
-        <input
-          className="textEntry"
+        <textarea
+          className="textEntryML"
           type="text"
           id={field}
           name={field}
           value={formData[field]}
           onChange={changeFunc}
+          maxLength="300"
           required
         />
       </div>
@@ -21,18 +22,19 @@ const InputText = (props) => {
   }
 
   return (
-    <div className="entryDiv">
+    <div className="entryMLDiv">
       <label htmlFor={field}>{fieldLabel}</label>
-      <input
-        className="textEntry"
+      <textarea
+        className="textEntryML"
         type="text"
         id={field}
         name={field}
         value={formData[field]}
         onChange={changeFunc}
+        maxLength="300"
       />
     </div>
   );
 };
 
-export default InputText;
+export default InputTextMultiline;

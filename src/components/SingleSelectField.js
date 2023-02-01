@@ -4,25 +4,11 @@ import "./SingleSelectField.css";
 
 const mapOptions = (field, formData) => {
   const optionArr = selectOptions?.[field] ?? [];
-  const selectedOption = formData[field];
-  console.log(selectedOption);
+  // console.log(optionArr);
 
   return optionArr.map((optObj, index) => {
-    console.log("mapping options");
+    // console.log("mapping options");
     const label = optObj?.name ?? [optObj?.fname, optObj?.lname].join(" ");
-    const setSelected = selectedOption === label ? true : null;
-
-    console.log(label);
-    console.log(selectedOption === label);
-    console.log(setSelected);
-
-    if (setSelected) {
-      return (
-        <option key={index} value={optObj.id} selected>
-          {label}
-        </option>
-      );
-    }
 
     return (
       <option key={index} value={optObj.id}>
@@ -33,13 +19,36 @@ const mapOptions = (field, formData) => {
 };
 
 const SingleSelectField = (props) => {
-  const { divId, field, fieldLabel, changeFunc } = props;
+  const { divId, field, fieldLabel, formData, changeFunc, required } = props;
+  const selectedOption = formData[field];
+
+  if (required) {
+    return (
+      <div key={divId} className="selectDiv">
+        <label htmlFor={field}>{fieldLabel}</label>
+        <select
+          id={field}
+          name={field}
+          defaultValue={selectedOption}
+          onChange={changeFunc}
+          required
+        >
+          {mapOptions(field, formData)}
+        </select>
+      </div>
+    );
+  }
 
   return (
     <div key={divId} className="selectDiv">
       <label htmlFor={field}>{fieldLabel}</label>
-      <select id={field} name={field} onChange={changeFunc}>
-        {mapOptions}
+      <select
+        id={field}
+        name={field}
+        defaultValue={selectedOption}
+        onChange={changeFunc}
+      >
+        {mapOptions(field, formData)}
       </select>
     </div>
   );
