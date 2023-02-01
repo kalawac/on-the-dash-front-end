@@ -12,14 +12,18 @@ const GroupDetail = () => {
     return item.id === itemId;
   });
 
+  const itemName =
+    thisItem?.name ?? [thisItem?.fname, thisItem?.lname].join(" ");
+
   return (
     <div id="gd">
       <section id="detailContent" className="flexC">
-        {thisItem?.name && <p>Name: {thisItem?.name}</p>}
+        {<p>Name: {itemName}</p>}
         {thisItem?.fname && <p>First Name: {thisItem?.fname}</p>}
         {thisItem?.lname && <p>Last Name: {thisItem?.lname}</p>}
-        {thisItem?.id && <p>ID: {thisItem?.id}</p>}
-        {thisItem?.orgs && <p>Affiliated organizations: {thisItem?.orgs}</p>}
+        {thisItem?.orgs && (
+          <p>Affiliated organizations: {thisItem?.orgs.join("; ")}</p> // better as a map, but do this last
+        )}
       </section>
       <section id="dm1" className="flexC">
         <DetailMenu />
