@@ -15,9 +15,9 @@ import NavLayout from "./components/NavLayout";
 import GroupDetail from "./routes/GroupDetail";
 import GroupView from "./routes/GroupView";
 
-import AddContact from "./routes/AddContact";
+import AddGroupData from "./routes/AddGroupData";
 import Dashboard from "./routes/Dashboard";
-import EditContact from "./routes/EditContact";
+import EditGroupData from "./routes/EditGroupData";
 import ErrorPage from "./routes/ErrorPage";
 import ImportMenu from "./routes/ImportMenu";
 import IndicatorTableView from "./routes/IndicatorTableView";
@@ -25,11 +25,6 @@ import LogIn from "./routes/LogIn";
 import Pitt from "./routes/Pitt";
 import Settings from "./routes/Settings";
 import SignUp from "./routes/SignUp";
-
-import ContactDetail from "./components/ContactDetail";
-import EventDetail from "./components/EventDetail";
-import IndicatorDetail from "./components/IndicatorDetail";
-import OrgDetail from "./components/OrgDetail";
 
 import { groupData } from "./components/DummyData";
 
@@ -72,7 +67,6 @@ function App() {
             loader={DummyFunction}
             errorElement={<ErrorPage />}
           />
-          <Route path="/404" element={<ErrorPage />} />
           <Route
             path="/:groupName"
             element={<GroupView />}
@@ -81,7 +75,7 @@ function App() {
           >
             <Route
               path="new"
-              element={<AddContact />}
+              element={<AddGroupData />}
               loader={DummyFunction}
               errorElement={<ErrorPage />}
             />
@@ -93,11 +87,12 @@ function App() {
             />
             <Route
               path=":itemId/edit"
-              element={<EditContact />}
+              element={<EditGroupData />}
               loader={DummyFunction}
               errorElement={<ErrorPage />}
             />
           </Route>
+          <Route path="/404" element={<ErrorPage />} />
         </Route>
         <Route
           path="/login"

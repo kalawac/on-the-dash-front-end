@@ -1,27 +1,12 @@
-import {
-  Outlet,
-  Link,
-  useParams,
-  useLoaderData,
-  useNavigate,
-} from "react-router-dom";
+import { Outlet, Link, useParams, useLoaderData } from "react-router-dom";
 
 import "./GroupView.css";
 
 const GroupView = () => {
   const groupData = useLoaderData();
   const { groupName } = useParams();
-  // const navigate = useNavigate();
 
   const thisData = groupData[groupName];
-  // let selectedItem = [];
-
-  // const setDetailObj = (el) => {
-  //   console.log("clicked");
-  //   selectedItem.push(el);
-  //   console.log(selectedItem);
-  //   return navigate(`${el.id}`);
-  // };
 
   const kTitle = {
     contacts: "Contacts",
@@ -32,14 +17,12 @@ const GroupView = () => {
 
   const getList = (groupArr) => {
     return groupArr.map((el, index) => {
+      const label = el?.name ?? [el?.fname, el?.lname].join(" ");
+
       return (
         <li key={index} className="list-group-item list-group-item-action">
-          <Link
-            to={`${el.id}`}
-            // onClick={() => setDetailObj(el)}
-            className="item"
-          >
-            {el.name}
+          <Link to={`${el.id}`} className="item">
+            {label}
           </Link>
         </li>
       );
