@@ -1,10 +1,17 @@
-import { Outlet, Link, useParams, useLoaderData } from "react-router-dom";
+import {
+  Outlet,
+  Link,
+  useParams,
+  useLoaderData,
+  useNavigate,
+} from "react-router-dom";
 
 import "./GroupView.css";
 
 const GroupView = () => {
   const groupData = useLoaderData();
   const { groupName } = useParams();
+  const navigate = useNavigate();
 
   const thisData = groupData[groupName];
 
@@ -33,6 +40,9 @@ const GroupView = () => {
     <div id="gl" className="flexR">
       <div id="listing" className="container">
         <h1>{kTitle[groupName]}</h1>
+        <button onClick={() => navigate(`new`)} className="addLink">
+          Add an entry
+        </button>
         <ul id="groupList" className="list-group list-group-flush">
           {getList(thisData)}
         </ul>

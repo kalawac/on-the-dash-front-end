@@ -1,15 +1,17 @@
-import "./InputText.css";
+import "./InputNumber.css";
 
-const InputText = (props) => {
+const InputNumber = (props) => {
   const { field, fieldLabel, formData, changeFunc, required } = props;
+
+  // I can add in min and max constraint validation
 
   if (required) {
     return (
       <div className="entryDiv">
         <label htmlFor={field}>{fieldLabel}</label>
         <input
-          className="textEntry"
-          type="text"
+          className="numberEntry"
+          type="number"
           id={field}
           name={field}
           value={formData[field]}
@@ -24,8 +26,8 @@ const InputText = (props) => {
     <div className="entryDiv">
       <label htmlFor={field}>{fieldLabel}</label>
       <input
-        className="textEntry"
-        type="text"
+        className="numberEntry"
+        type="number"
         id={field}
         name={field}
         value={formData[field]}
@@ -35,4 +37,4 @@ const InputText = (props) => {
   );
 };
 
-export default InputText;
+export default InputNumber;

@@ -3,7 +3,11 @@ import { useOutletContext, useParams, useNavigate } from "react-router-dom";
 
 import "./EditGroupData.css";
 
-import { formLabels, formFields } from "../components/Utils";
+import {
+  formLabels,
+  modelColumns,
+  modelColumnsRequired,
+} from "../components/Utils";
 import DetailMenu from "../components/DetailMenu";
 
 // const handleSubmit = async (formData) => {
@@ -36,7 +40,7 @@ const isError = () => {
 
 const EditGroupData = () => {
   const [thisData] = useOutletContext();
-  const { itemId } = useParams();
+  const { groupName, itemId } = useParams();
   const navigate = useNavigate();
 
   const [thisItem] = thisData.filter((item) => {
@@ -56,8 +60,8 @@ const EditGroupData = () => {
   const handleMultiSelectChange = (event) => {
     // console.log("handling change");
     // console.log(Object.values(event.target.options));
-    const selectedVals = Object.values(event.target.selectedOptions).map((o) =>
-      Number(o.value)
+    const selectedVals = Object.values(event.target.selectedOptions).map(
+      (o) => o.value
     );
     // console.log(selectedVals);
     const fieldName = event.target.name;
@@ -65,7 +69,10 @@ const EditGroupData = () => {
   };
 
   const kChangeFuncName = {
+    InputDate: handleSingleChange,
+    InputNumber: handleSingleChange,
     InputText: handleSingleChange,
+    InputTextMultiline: handleSingleChange,
     MultiSelectField: handleMultiSelectChange,
     SingleSelectField: handleSingleChange,
   };
@@ -73,11 +80,11 @@ const EditGroupData = () => {
   const createForm = (formData) => {
     // Exclude ID from the mapping list before mapping.
     // TBD, as applicable: Also include any other fields that I don't want edited.
-    const itemArr = Object.keys(thisItem).filter((e) => e !== "id");
+    const itemArr = Object.keys(formData).filter((e) => e !== "id");
 
     const formArr = itemArr.map((field, index) => {
       const fieldLabel = formLabels?.[field];
-      const webPart = formFields?.[field];
+      const webPart = modelColumns?.[groupName]?.[field];
 
       const props = {
         divId: index,
@@ -85,6 +92,7 @@ const EditGroupData = () => {
         fieldLabel: fieldLabel,
         formData: formData,
         changeFunc: kChangeFuncName[webPart.name],
+        required: modelColumnsRequired?.[groupName]?.[field],
       };
 
       // console.log(props);
