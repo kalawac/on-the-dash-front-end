@@ -9,6 +9,10 @@
 
 #detailContent {
     grid-area: 1/1/13/13;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 2vh 2vw;
+    overflow: auto;
 }
 
 #dm1 {
@@ -26,3 +30,37 @@
     align-items: flex-start;
 }
 
+#detailContent .itemField {
+    margin: 15px 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#detailContent .label {
+    display: inline-block;
+    width: 100%;
+    font-weight: bold;
+    color: #0067B9;
+}
+
+#detailContent .info {
+    display: inline-flex;
+    width: 100%;
+    min-height:3vh;
+    height: fit-content;
+    justify-content: flex-start;
+    align-items:flex-start;
+    padding:0;
+    color: #002F6C;
+
+}
+
+#detailContent .info ul {
+    padding: 0 15px;
+    margin: 5px 0;
+}
+
+#detailContent .info ul li {
+    margin: 3px 0;
+}

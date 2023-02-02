@@ -6,26 +6,50 @@ import MultiSelectField from "./MultiSelectField";
 import SingleSelectField from "./SingleSelectField";
 import { groupData } from "./DummyData";
 
+// Quick List of exports:
+// modelColumns -- for use in creating AddData and EditData forms;
+//     specifies form component to be created
+// modelColumnsRequired -- for use in creating AddData and Edit Data forms;
+//     specifies if field is required
+// formLabels -- specifies label to be used when displaying form fields or data
+// selectOptions -- specifies options for each field with multiple or single selection
+// eventSubjects -- object of all subjects in selectOptions.subjects,
+//     key: subject id, value: subject name
+// eventSubjectsArr -- list of subject objects with id and name key-value pairs
+// eventType -- object of all types in selectOptions.type,
+//     key: type id, value: type name
+// indReportFreq -- object of all types in selectOptions.reportFreq,
+//     key: type id, value: type name
+// indCalcFreq -- object of all types in selectOptions.reportFreq,
+//     key: type id, value: type name
+
 const nullFunc = (props) => null;
 
+const viewOnly = (props) => null;
+
 export const modelColumns = {
+  // include all object properties
+  // use nullFunc for properties that should not be displayed on add or edit or view
+  // use viewOnlyFunc for properties that should only be displayed on view
   contacts: {
     id: nullFunc,
     fname: InputText,
     lname: InputText,
-    orgs: nullFunc,
+    // orgs: nullFunc,
     orgIds: MultiSelectField,
+    eventIds: nullFunc,
   },
   events: {
     id: nullFunc,
     name: InputText,
     type: SingleSelectField,
-    subject: MultiSelectField,
+    subjects: MultiSelectField,
     // num_days: SingleSelectField, // just do one day at a time
     // consecutive: SingleSelectField, // are the days consective? Yes / No (may be better as radio button but let's work with this for now)
     dates: InputDate, // TBD input date -- just doing one day for now. eventually needs to capture an array of dates -- maybe 1, maybe multiple non-consecutive, maybe multiple consecutive
     participants: MultiSelectField, // this will then need to generate a list of participants in a matrix, sighghghghgh. maybe I hardcode that item.
-    attendanceCompletion: nullFunc, // this can be a matrix specifically for this that then generates two separate fields for state, partipants_attended and participants_completed.
+    attendance: viewOnly, // input after this step / edit separately
+    completion: viewOnly, // input after this step / edit separately
   },
   indicators: {
     id: nullFunc,
@@ -44,6 +68,7 @@ export const modelColumns = {
   orgs: {
     id: nullFunc,
     name: InputText,
+    contactIds: nullFunc,
   },
 };
 
@@ -52,16 +77,18 @@ export const modelColumnsRequired = {
     fname: true,
     lname: true,
     orgIds: false,
+    eventIds: false,
   },
   events: {
     name: true,
     type: true,
-    subject: false,
+    subjects: false,
     // num_days: SingleSelectField, // just do one day at a time
     // consecutive: SingleSelectField, // are the days consective? Yes / No (may be better as radio button but let's work with this for now)
     dates: true, // TBD input date -- just doing one day for now. eventually needs to capture an array of dates -- maybe 1, maybe multiple non-consecutive, maybe multiple consecutive
     participants: false, // this will then need to generate a list of participants in a matrix, sighghghghgh. maybe I hardcode that item.
-    attendanceCompletion: false, // this can be a matrix specifically for this that then generates two separate fields for state, partipants_attended and participants_completed.
+    attendance: false,
+    completion: false,
   },
   indicators: {
     irn: true, // irn generates ind_name, ind_cat, standard, definition, data_type and conditions in the DB
@@ -77,44 +104,52 @@ export const modelColumnsRequired = {
   },
   orgs: {
     name: true,
+    contactIds: false,
   },
 };
 
 export const formLabels = {
-  attendance: "Attended?",
-  attendanceCompletion: "Participant Attendance",
+  attendance: "Attended",
   bldate: "Baseline Date",
   blValue: "Baseline Value",
   calcFreq: "Calculation Frequency",
-  completion: "Completed?",
+  completion: "Completed Training",
+  contactIds: "Associated Contacts",
   dataSource: "Data Source(s)",
   dates: "Date",
   definition: "Indicator Definition",
+  eventIds: "Events", // try to figure out how to show attended, completed for each event. later.
   fname: "First Name",
   irn: "Indicator Reference Number",
   lname: "Last Name",
   lopTarget: "Life of Project Target",
   method: "Methodology",
   name: "Name",
-  orgIds: "Organization(s)",
+  orgIds: "Associated Organization(s)",
   participants: "Participants",
   reportFreq: "Reporting Frequency",
-  subject: "Subject(s) Covered",
+  subjects: "Subject(s) Covered",
   type: "Event Type",
   y1Target: "Year 1 Target",
   y2Target: "Year 2 Target",
 };
 
-// export const formFields = {
-//   id: nullFunc,
-//   name: InputText,
-//   fname: InputText,
-//   lname: InputText,
-//   orgs: nullFunc,
-//   orgIds: MultiSelectField,
-// };
-
+// make changes to event subject and type lists here
 export const selectOptions = {
+  calcFreq: [
+    {
+      id: "1",
+      name: "Quarterly",
+    },
+    {
+      id: "2",
+      name: "Semi-Annually",
+    },
+    {
+      id: "3",
+      name: "Annually",
+    },
+  ],
   events: groupData.events,
   indicators: groupData.indicators,
   irn: [
@@ -123,7 +158,21 @@ export const selectOptions = {
   ],
   orgIds: groupData.orgs,
   participants: groupData.contacts,
-  subject: [
+  reportFreq: [
+    {
+      id: "1",
+      name: "Quarterly",
+    },
+    {
+      id: "2",
+      name: "Semi-Annually",
+    },
+    {
+      id: "3",
+      name: "Annually",
+    },
+  ],
+  subjects: [
     {
       id: "1",
       name: "Subject 1",
@@ -160,3 +209,16 @@ export const selectOptions = {
     },
   ],
 };
+
+const getIdNameObj = (arr) =>
+  Object.fromEntries(arr.map((obj) => [obj.id, obj.name]));
+
+export const eventSubjects = getIdNameObj(selectOptions.subjects);
+
+export const eventSubjectsArr = selectOptions.subjects;
+
+export const eventType = getIdNameObj(selectOptions.type);
+
+export const indReportFreq = getIdNameObj(selectOptions.reportFreq);
+
+export const indCalcFreq = getIdNameObj(selectOptions.calcFreq);

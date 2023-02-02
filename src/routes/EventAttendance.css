@@ -1,0 +1,59 @@
+#ea {
+    background-color: white;
+    width: 100%;
+    height: 100%;;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+}
+
+#eaContent {
+    grid-area: 1/1/13/13;
+}
+
+#eaContent form {
+    min-height:fit-content;
+    min-width: fit-content;
+}
+
+#dmEa {
+    width: 4vw;
+    max-width: 6vh;
+    height: 4vw;
+    max-height: 6vh;
+    background-color: inherit;
+    grid-area: 1/12/2/13;
+    position:sticky;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+#dm3 {
+    width: 4vw;
+    max-width: 6vh;
+    height: 4vw;
+    max-height: 6vh;
+    background-color: inherit;
+    position:sticky;
+    top: 0;
+    right:0;
+    z-index: 10;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+#dm3 button {
+    margin: 1vmin;
+    width: 3vw;
+    max-width: 4.5vh;
+    height: 3vw;
+    max-height: 4.5vh;
+}
+
+.inputDiv {
+    min-width: 70%;
+    min-height: 30px;
+}

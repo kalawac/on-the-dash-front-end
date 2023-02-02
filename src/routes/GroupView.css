@@ -18,6 +18,7 @@
     width: fit-content;
     height: 100%;
     overflow: auto;
-    border: 5px solid green;
+    border: 2px ridge #CFCDC9;
+    background-color: #CFCDC9;
     width: 60%;
 }

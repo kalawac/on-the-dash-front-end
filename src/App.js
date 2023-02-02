@@ -18,6 +18,7 @@ import GroupView from "./routes/GroupView";
 import AddGroupData from "./routes/AddGroupData";
 import Dashboard from "./routes/Dashboard";
 import EditGroupData from "./routes/EditGroupData";
+import EventAttendance from "./routes/EventAttendance";
 import ErrorPage from "./routes/ErrorPage";
 import ImportMenu from "./routes/ImportMenu";
 import IndicatorTableView from "./routes/IndicatorTableView";
@@ -92,6 +93,12 @@ function App() {
               errorElement={<ErrorPage />}
             />
           </Route>
+          <Route
+            path="/events/:itemId/attendance"
+            element={<EventAttendance />}
+            loader={DummyFunction}
+            errorElement={<ErrorPage />}
+          />
           <Route path="/404" element={<ErrorPage />} />
         </Route>
         <Route
