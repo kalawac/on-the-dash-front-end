@@ -1,11 +1,11 @@
 import "./InputText.css";
 
 const InputText = (props) => {
-  const { field, fieldLabel, formData, changeFunc, required } = props;
+  const { divId, field, fieldLabel, formData, changeFunc, required } = props;
 
   if (required) {
     return (
-      <div className="entryDiv">
+      <div key={divId} className="entryDiv">
         <label htmlFor={field}>{fieldLabel}</label>
         <input
           className="textEntry"
@@ -21,7 +21,7 @@ const InputText = (props) => {
   }
 
   return (
-    <div className="entryDiv">
+    <div key={divId} className="entryDiv">
       <label htmlFor={field}>{fieldLabel}</label>
       <input
         className="textEntry"

@@ -1,11 +1,11 @@
 import "./InputTextMultiline.css";
 
 const InputTextMultiline = (props) => {
-  const { field, fieldLabel, formData, changeFunc, required } = props;
+  const { divId, field, fieldLabel, formData, changeFunc, required } = props;
 
   if (required) {
     return (
-      <div className="entryMLDiv">
+      <div key={divId} className="entryMLDiv">
         <label htmlFor={field}>{fieldLabel}</label>
         <textarea
           className="textEntryML"
@@ -22,7 +22,7 @@ const InputTextMultiline = (props) => {
   }
 
   return (
-    <div className="entryMLDiv">
+    <div key={divId} className="entryMLDiv">
       <label htmlFor={field}>{fieldLabel}</label>
       <textarea
         className="textEntryML"

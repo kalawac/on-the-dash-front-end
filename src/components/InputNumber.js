@@ -1,13 +1,13 @@
 import "./InputNumber.css";
 
 const InputNumber = (props) => {
-  const { field, fieldLabel, formData, changeFunc, required } = props;
+  const { divId, field, fieldLabel, formData, changeFunc, required } = props;
 
   // I can add in min and max constraint validation
 
   if (required) {
     return (
-      <div className="entryDiv">
+      <div key={divId} className="entryDiv">
         <label htmlFor={field}>{fieldLabel}</label>
         <input
           className="numberEntry"
@@ -23,7 +23,7 @@ const InputNumber = (props) => {
   }
 
   return (
-    <div className="entryDiv">
+    <div key={divId} className="entryDiv">
       <label htmlFor={field}>{fieldLabel}</label>
       <input
         className="numberEntry"

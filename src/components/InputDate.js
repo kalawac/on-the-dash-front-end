@@ -1,13 +1,13 @@
 import "./InputDate.css";
 
 const InputDate = (props) => {
-  const { field, fieldLabel, formData, changeFunc, required } = props;
+  const { divId, field, fieldLabel, formData, changeFunc, required } = props;
 
   // I can add in min and max constraint validation
 
   if (required) {
     return (
-      <div className="dateEntryDiv">
+      <div key={divId} className="dateEntryDiv">
         <label htmlFor={field}>{fieldLabel}</label>
         <input
           className="dateEntry"
@@ -23,7 +23,7 @@ const InputDate = (props) => {
   }
 
   return (
-    <div className="dateEntryDiv">
+    <div key={divId} className="dateEntryDiv">
       <label htmlFor={field}>{fieldLabel}</label>
       <input
         className="dateEntry"

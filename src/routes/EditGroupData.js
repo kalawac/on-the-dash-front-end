@@ -58,8 +58,6 @@ const EditGroupData = () => {
   };
 
   const handleMultiSelectChange = (event) => {
-    // console.log("handling change");
-    // console.log(Object.values(event.target.options));
     const selectedVals = Object.values(event.target.selectedOptions).map(
       (o) => o.value
     );
