@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 import "./AddGroupData.css";
 
@@ -8,8 +11,6 @@ import {
   modelColumns,
   modelColumnsRequired,
 } from "../components/Utils";
-import DetailMenu from "../components/DetailMenu";
-import MultiSelectField from "../components/MultiSelectField";
 
 // const handleSubmit = async (formData) => {
 //   const requestBody = formData;
@@ -48,7 +49,7 @@ const AddGroupData = () => {
     // console.log(stateObj);
     for (const [key, value] of Object.entries(modelColumns?.[groupName])) {
       if (value.name !== "nullFunc") {
-        stateObj[key] = value === MultiSelectField ? [] : "";
+        stateObj[key] = value.name === "MultiSelectField" ? [] : "";
       }
     }
     return stateObj;
@@ -134,9 +135,17 @@ const AddGroupData = () => {
           <button id="submit">Submit</button>
         </form>
       </section>
-      {/* <section id="dmAg" className="flexC">
-        <DetailMenu />
-      </section> */}
+      <section id="dmAg" className="flexC">
+        <div id="dm3" className="flexC">
+          <Link to={".."}>
+            <button title="Close form">
+              <span className="fa-solid fa-classic fa-xmark">
+                <FontAwesomeIcon icon={solid("xmark")} />
+              </span>
+            </button>
+          </Link>
+        </div>
+      </section>
     </div>
   );
 };

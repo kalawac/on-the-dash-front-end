@@ -6,8 +6,6 @@ const mapOptions = (field) => {
   const optionArr = selectOptions?.[field] ?? [];
 
   return optionArr.map((optObj, index) => {
-    console.log("mapping options");
-    console.log(index);
     const label = optObj?.name ?? [optObj?.fname, optObj?.lname].join(" ");
 
     return (
