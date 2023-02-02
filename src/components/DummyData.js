@@ -63,7 +63,7 @@ const contacts = [
     fname: "Husein",
     lname: "Wattana",
     // name: "Husein Wattana",
-    orgs: ["Hello World LLC"],
+    // orgs: ["Hello World LLC"],
     orgIds: ["8"],
   },
   {
@@ -71,7 +71,7 @@ const contacts = [
     fname: "Nechtan",
     lname: "Kerper",
     // name: "Nechtan Kerper",
-    orgs: ["Fish Tea", "Hello World LLC"],
+    // orgs: ["Fish Tea", "Hello World LLC"],
     orgIds: ["6", "8"],
   },
   {
@@ -79,7 +79,7 @@ const contacts = [
     fname: "Robert",
     lname: "Winthrop",
     // name: "Robert Winthrop",
-    orgs: [],
+    // orgs: [],
     orgIds: [],
   },
   {
@@ -87,7 +87,7 @@ const contacts = [
     fname: "Anja",
     lname: "McKenzie",
     // name: "Anja McKenzie",
-    orgs: ["Abel's Organization"],
+    // orgs: ["Abel's Organization"],
     orgIds: ["1"],
   },
   {
@@ -95,7 +95,7 @@ const contacts = [
     fname: "Agata",
     lname: "Iwasaki",
     // name: "Agata Iwasaki",
-    orgs: ["Hello World LLC"],
+    // orgs: ["Hello World LLC"],
     orgIds: ["8"],
   },
   {
@@ -103,7 +103,7 @@ const contacts = [
     fname: "Elikapeka",
     lname: "Jansink",
     // name: "Elikapeka Jansink",
-    orgs: ["Babies for Boomerangs", "Catch Me!", "Gone for Good"],
+    // orgs: ["Babies for Boomerangs", "Catch Me!", "Gone for Good"],
     orgIds: ["2", "3", "7"],
   },
   {
@@ -111,7 +111,7 @@ const contacts = [
     fname: "Borislav",
     lname: "Aldershof",
     // name: "Borislav Aldershof",
-    orgs: ["Didja Know?", "Hello World LLC", "Jekyll & Hyde, Esq."],
+    // orgs: ["Didja Know?", "Hello World LLC", "Jekyll & Hyde, Esq."],
     orgIds: ["4", "8", "10"],
   },
   {
@@ -119,7 +119,7 @@ const contacts = [
     fname: "Dionisie",
     lname: "Sargsyan",
     // name: "Dionisie Sargsyan",
-    orgs: [],
+    // orgs: [],
     orgIds: [],
   },
   {
@@ -127,7 +127,7 @@ const contacts = [
     fname: "Zaki",
     lname: "Vroomen",
     // name: "Zaki Vroomen",
-    orgs: ["Ignoramuses, Inc.", "Jekyll & Hyde, Esq."],
+    // orgs: ["Ignoramuses, Inc.", "Jekyll & Hyde, Esq."],
     orgIds: ["9", "10"],
   },
   {
@@ -135,7 +135,7 @@ const contacts = [
     fname: "Raja",
     lname: "Gautam",
     // name: "Raja Gautam",
-    orgs: ["Gone for Good"],
+    // orgs: ["Gone for Good"],
     orgIds: ["7"],
   },
 ];
@@ -153,8 +153,34 @@ const indicators = [
 
 const events = [
   {
-    id: "1",
-    name: "Dummy Event",
+    id: "la21di-dah",
+    name: "How to Stop Time",
+    type: "4",
+    subjects: ["1", "3"],
+    dates: "Tue Feb 1 2022",
+    participants: ["abcd2e", "a2bcde", "302948", "hijklm"],
+    attendance: [],
+    completion: [], // only for trainings
+  },
+  {
+    id: "wxyz123",
+    name: "How to Restart Time",
+    type: "4",
+    subjects: ["2"],
+    dates: "Tue Feb 1 2022",
+    participants: ["abcd2e", "hijklm"],
+    attendance: [],
+    completion: [], // only for trainings
+  },
+  {
+    id: "ofibav",
+    name: "Time Manipulation Support",
+    type: "3",
+    subjects: ["1", "2", "3"],
+    dates: "Wed Feb 2 2022",
+    participants: ["abcd2e", "a2bcde", "hijklm"],
+    attendance: [],
+    completion: [], // only for trainings
   },
 ];
 
@@ -164,88 +190,3 @@ export const groupData = {
   indicators: indicators,
   orgs: orgs,
 };
-
-// <Route
-//   path="/indicators/new"
-//   element={<AddIndicator />}
-//   loader={DummyFunction}
-//   errorElement={<ErrorPage />}
-// />
-// <Route
-//   path="/indicators/:indicatorId/edit"
-//   element={<AddIndicator />}
-//   loader={DummyFunction}
-//   errorElement={<ErrorPage />}
-// />
-// <Route
-//   path="/contacts"
-//   element={<ContactsView />}
-//   loader={DummyFunction}
-//   errorElement={<ErrorPage />}
-// >
-//   <Route
-//     path="/contacts/new"
-//     element={<AddContact />}
-//     loader={DummyFunction}
-//     errorElement={<ErrorPage />}
-//   />
-//   <Route
-//     path="/contacts/:contactId"
-//     element={<ContactDetail />}
-//     loader={DummyFunction}
-//     errorElement={<ErrorPage />}
-//   />
-//   <Route
-//     path="/contacts/:contactId/edit"
-//     element={<EditContact />}
-//     loader={DummyFunction}
-//     errorElement={<ErrorPage />}
-//   />
-// </Route>
-// <Route
-//   path="/orgs"
-//   element={<OrgsView />}
-//   loader={DummyFunction}
-//   errorElement={<ErrorPage />}
-// >
-//   <Route
-//     path="/orgs/new"
-//     element={<AddOrg />}
-//     loader={DummyFunction}
-//     errorElement={<ErrorPage />}
-//   />
-//   <Route
-//     path="/orgs/:orgId"
-//     element={<OrgDetail />}
-//     loader={DummyFunction}
-//     errorElement={<ErrorPage />}
-//   />
-//   <Route
-//     path="/orgs/:orgId/edit"
-//     element={<EditOrg />}
-//     loader={DummyFunction}
-//     errorElement={<ErrorPage />}
-//   />
-// </Route>
-// <Route
-//   path="/events"
-//   element={<EventsView />}
-//   loader={DummyFunction}
-//   errorElement={<ErrorPage />}
-// >
-//   <Route
-//     path="/events/new"
-//     element={<AddEvent />}
-//     errorElement={<ErrorPage />}
-//   />
-//   <Route
-//     path="/events/:eventId"
-//     element={<EventDetail />}
-//     errorElement={<ErrorPage />}
-//   />
-//   <Route
-//     path="/events/:eventId/edit"
-//     element={<EditEvent />}
-//     errorElement={<ErrorPage />}
-//   />
-// </Route>
