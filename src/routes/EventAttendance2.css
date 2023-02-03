@@ -1,0 +1,139 @@
+#ea {
+    background-color: #CFCDC9;
+    min-width: 100%;
+    width:85vw;
+    min-height: fit-content;
+    height:100vh;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    overflow: auto;
+}
+
+#eaContent {
+    grid-area: 1/1/13/13;
+    min-width: 70vw;
+    width: fit-content;
+    min-height: fit-content;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow: auto;
+    margin-top: 4vh;
+    margin-left: 5vw;
+    margin-right: 10vmax;
+    margin-bottom: 2vh;
+}
+
+#dmEa {
+    width: 4vw;
+    max-width: 6vh;
+    height: 4vw;
+    max-height: 6vh;
+    background-color: inherit;
+    grid-area: 1/12/2/13;
+    position:sticky;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+#dm3 {
+    width: 4vw;
+    max-width: 6vh;
+    height: 10vw;
+    max-height: 12vh;
+    background-color: inherit;
+    position:sticky;
+    top: 0;
+    right:0;
+    z-index: 10;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+#dm3 button {
+    margin: 1vmin;
+    width: 3vw;
+    max-width: 4.5vh;
+    height: 3vw;
+    max-height: 4.5vh;
+}
+
+#submit {
+    background-color: greenyellow;
+}
+
+#table {
+    width: fit-content;
+    height: fit-content;
+    background-color: rgba(255, 255, 255, 0.899);
+    border: 1px solid #6C6463;
+    padding: 1vh 0 4vh 0;
+}
+
+#table *, *:before, *:after {
+    box-sizing: border-box;
+}
+
+#ea .dataCol {
+    width: clamp(200px, 20vw, 30vw);
+    min-height: 5vh;
+    height: fit-content;
+    /* border-right: 2px solid #6C6463; */
+}
+
+#ea h2 {
+    margin: 0;
+    text-align: center;
+}
+
+#ea .inputCol {
+    width: clamp(200px, 10vw, 10vw);
+    min-height: 5vh;
+    height: fit-content;
+    /* border-right: 1px solid #6C6463; */
+}
+
+#ea .inputCol:last-of-type {
+    border-right: none;
+}
+
+#ea .headerRow {
+    min-height: 5vh;
+    height: fit-content;
+    padding: 1vh 10px;
+    align-items: center;
+    justify-content: flex-end;
+    margin:0;
+    border-bottom: 2px ridge #6C6463;
+}
+
+#ea .selectAllRow {
+    min-height: 5vh;
+    height: fit-content;
+    padding: 5px 10px;
+    border-bottom: 2px ridge #6C6463;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    margin:0;
+    font-style: italic;
+}
+
+#ea .attRow {
+    min-height: 4vh;
+    height: fit-content;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+    margin:0;
+    text-align: center;
+}
+
+#ea .attRow:hover {
+    background-color: #A7C6ED;
+}
+

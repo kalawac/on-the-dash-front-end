@@ -18,7 +18,7 @@ import GroupView from "./routes/GroupView";
 import AddGroupData from "./routes/AddGroupData";
 import Dashboard from "./routes/Dashboard";
 import EditGroupData from "./routes/EditGroupData";
-import EventAttendance from "./routes/EventAttendance";
+import EventAttendance2 from "./routes/EventAttendance2";
 import ErrorPage from "./routes/ErrorPage";
 import ImportMenu from "./routes/ImportMenu";
 import IndicatorTableView from "./routes/IndicatorTableView";
@@ -28,6 +28,7 @@ import Settings from "./routes/Settings";
 import SignUp from "./routes/SignUp";
 
 import { groupData } from "./components/DummyData";
+import FourOhFour from "./routes/FourOhFour";
 
 const DummyFunction = () => null;
 
@@ -72,7 +73,7 @@ function App() {
             path="/:groupName"
             element={<GroupView />}
             loader={loadData}
-            errorElement={<ErrorPage />}
+            errorElement={<FourOhFour />}
           >
             <Route
               path="new"
@@ -84,7 +85,7 @@ function App() {
               path=":itemId"
               element={<GroupDetail />}
               loader={DummyFunction}
-              errorElement={<ErrorPage />}
+              errorElement={<ErrorPage />} // change to FourOhFour at end
             />
             <Route
               path=":itemId/edit"
@@ -95,11 +96,11 @@ function App() {
           </Route>
           <Route
             path="/events/:itemId/attendance"
-            element={<EventAttendance />}
+            element={<EventAttendance2 />}
             loader={DummyFunction}
-            errorElement={<ErrorPage />}
+            errorElement={<FourOhFour />}
           />
-          <Route path="/404" element={<ErrorPage />} />
+          <Route path="/404" element={<FourOhFour />} />
         </Route>
         <Route
           path="/login"
