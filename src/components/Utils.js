@@ -136,6 +136,10 @@ export const formLabels = {
 
 // make changes to event subject and type lists here
 export const selectOptions = {
+  attendance: [
+    { id: "1", name: "Yes" },
+    { id: "0", name: "No" },
+  ],
   calcFreq: [
     {
       id: "1",
@@ -149,6 +153,10 @@ export const selectOptions = {
       id: "3",
       name: "Annually",
     },
+  ],
+  completion: [
+    { id: "1", name: "Yes" },
+    { id: "0", name: "No" },
   ],
   events: groupData.events,
   indicators: groupData.indicators,

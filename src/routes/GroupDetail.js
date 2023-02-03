@@ -1,4 +1,4 @@
-import { useOutletContext, useParams } from "react-router-dom";
+import { Link, useOutletContext, useParams } from "react-router-dom";
 
 import "./GroupDetail.css";
 
@@ -139,6 +139,11 @@ const GroupDetail = () => {
           <div className="info">{itemName}</div>
         </div>
         {displayFields(thisItem)}
+        {groupName === "events" && (
+          <Link to={`attendance`}>
+            <button>Edit Participant Attendance</button>
+          </Link>
+        )}
       </section>
       <section id="dm1" className="flexC">
         <DetailMenu />

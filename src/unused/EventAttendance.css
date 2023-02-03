@@ -1,0 +1,115 @@
+#ea {
+    background-color: white;
+    min-width: 100%;
+    width:85vw;
+    min-height: fit-content;
+    height:100vh;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+}
+
+#eaContent {
+    grid-area: 1/1/13/13;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    overflow: auto;
+}
+
+#dmEa {
+    width: 4vw;
+    max-width: 6vh;
+    height: 4vw;
+    max-height: 6vh;
+    background-color: inherit;
+    grid-area: 1/12/2/13;
+    position:sticky;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+#dm3 {
+    width: 4vw;
+    max-width: 6vh;
+    height: 10vw;
+    max-height: 12vh;
+    background-color: inherit;
+    position:sticky;
+    top: 0;
+    right:0;
+    z-index: 10;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+#dm3 button {
+    margin: 1vmin;
+    width: 3vw;
+    max-width: 4.5vh;
+    height: 3vw;
+    max-height: 4.5vh;
+}
+
+#submit {
+    background-color: greenyellow;
+}
+
+#ea .inputDiv {
+    min-width: 70%;
+    min-height: 30px;
+}
+
+#ea .dataCol {
+    min-width: 30vw;
+    width: fit-content;
+    min-height: 5vh;
+    height: fit-content;
+    border: 2px solid #6C6463;
+    /* border-top: 2px solid #6C6463;
+    border-right: 2px solid #6C6463;
+    border-left: 2px solid #6C6463; */
+    margin-top: 4vh;
+    margin-left: 5vw;
+}
+
+/* #ea h2 {
+    margin: 0;
+} */
+
+#ea .inputCol {
+    min-width: 10vw;
+    width: fit-content;
+    min-height: 5vh;
+    height: fit-content;
+    border-top: 2px solid #6C6463;
+    border-bottom: 2px solid #6C6463;
+    border-right: 1px solid #6C6463;
+    margin-top: 4vh;
+}
+
+#ea .inputCol:last-of-type {
+    border-right: 2px solid #6C6463;
+    margin-right: 10vmax;
+}
+
+#ea .headerRow {
+    min-height: 15vh;
+    height: fit-content;
+    padding: 5px 10px;
+    border-bottom: 2px ridge #6C6463;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#ea .attRow {
+    min-height: 4vh;
+    height: fit-content;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+}
+
