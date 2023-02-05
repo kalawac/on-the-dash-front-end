@@ -3,18 +3,19 @@
     position: sticky;
     height: fit-content;
     min-height: 100vh;
-    width: clamp(120px, 15vw, 200px);
+    width: clamp(120px, 12vw, 200px);
     min-width: fit-content;
     align-items: center;
     justify-content: flex-start;
 }
 
 .navButton {
-    width: clamp(100px, 12vw, 180px);
-    height: 3vmax;
+    width: clamp(100px, 8vw, 150px);
+    height: clamp(35px, 3vw, 100px);
     border: 1px solid #6C6463;
     border-radius: 10px;
     color: #002F6C;
+    font-family: 'Lato', sans-serif;
 }
 
 #B1B2Spacing {
@@ -62,9 +63,9 @@
     z-index: 10;
     background-color: #A7C6ED;
     border: 1px solid #0067B9;
-    border-radius: 1px;
+    border-radius: 5px;
     height: clamp(fit-content, 8vw, 20vh);
-    width: clamp(100px, 12vw, 180px);
+    width: clamp(100px, 8vw, 150px);
     animation: .2s ease 0s slidein; 
     overflow:auto; 
 }
