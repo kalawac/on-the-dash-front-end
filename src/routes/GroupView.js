@@ -40,7 +40,7 @@ const GroupView = () => {
     <div id="gl" className="flexR">
       <div id="listing" className="container">
         <h1>{kTitle[groupName]}</h1>
-        <button onClick={() => navigate(`new`)} className="addLink">
+        <button onClick={() => navigate(`new`)} className="addRecord">
           Add an entry
         </button>
         <ul id="groupList" className="list-group list-group-flush">
