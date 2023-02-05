@@ -117,6 +117,9 @@ const AddGroupData = () => {
 
   const submitForm = (formData) => {
     console.log("submitting form");
+    if (formData?.age === "") {
+      formData.age = 0;
+    }
     console.log(formData);
     return navigate(`..`);
   };

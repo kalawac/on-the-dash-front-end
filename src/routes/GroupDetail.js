@@ -9,8 +9,10 @@ import {
   contactGender,
   eventSubjectsArr,
   eventType,
+  indDisaggregatesArr,
   indReportFreq,
   indCalcFreq,
+  orgWorkFocusArr,
   modelColumns,
 } from "../components/Utils";
 
@@ -47,13 +49,13 @@ const GroupDetail = () => {
   const { contacts, events, orgs } = groupData;
 
   const displayField = (thisItem, field) => thisItem?.[field];
-  const displayItemMap = (thisItem, field, group) => {
+  const displayItemMap = (thisItem, field, arrOfObjs) => {
     if (!thisItem?.[field] || thisItem?.[field].length === 0) {
-      return ["[None]"];
+      return ["[No data]"];
     }
 
     return thisItem?.[field].map((id) =>
-      group
+      arrOfObjs
         .filter((el) => el.id === id)
         .map((el) => el?.name ?? [el?.fname, el?.lname].join(" "))
     );
@@ -61,6 +63,9 @@ const GroupDetail = () => {
 
   const displayAssociatedName = (thisItem, field, obj) =>
     obj?.[thisItem?.[field]];
+
+  const displayAge = (thisItem, field) =>
+    thisItem?.[field] > 0 ? thisItem?.[field] : "";
 
   const modelDisplay = {
     // include all object properties to be displayed
@@ -70,6 +75,7 @@ const GroupDetail = () => {
       // name: (thisItem, field) => [thisItem.fname, thisItem.lname].join(" "),
       fname: displayField,
       lname: displayField,
+      age: displayAge,
       gender: (thisItem, field) =>
         displayAssociatedName(thisItem, field, contactGender),
       orgIds: (thisItem, field) => displayItemMap(thisItem, field, orgs),
@@ -92,6 +98,8 @@ const GroupDetail = () => {
     indicators: {
       irn: displayField,
       dataSource: displayField,
+      disaggregates: (thisItem, field) =>
+        displayItemMap(thisItem, field, indDisaggregatesArr),
       method: displayField,
       reportFreq: (thisItem, field) =>
         displayAssociatedName(thisItem, field, indReportFreq),
@@ -105,6 +113,8 @@ const GroupDetail = () => {
     },
     orgs: {
       name: displayField,
+      workFocus: (thisItem, field) =>
+        displayItemMap(thisItem, field, orgWorkFocusArr),
       contactIds: (thisItem, field) =>
         displayItemMap(thisItem, field, contacts),
     },
@@ -113,10 +123,14 @@ const GroupDetail = () => {
   const displayFields = (thisItem) => {
     // Exclude ID from the mapping list before mapping.
     // Exclude Name because it's covered through itemName
-    // Exclude attendance and completion because they are nullFunc in modelColumns
-    const itemArr = Object.keys(thisItem).filter(
+    let itemArr = Object.keys(thisItem).filter(
       (e) => e !== "id" && e !== "name"
     );
+
+    // Exclude completion if not a training event
+    if (groupName === "events" && thisItem?.type !== "4") {
+      itemArr = itemArr.filter((e) => e !== "completion");
+    }
 
     const fieldArr = itemArr.map((field, index) => {
       const fieldLabel = formLabels?.[field];
