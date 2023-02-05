@@ -6,6 +6,7 @@ import DetailMenu from "../components/DetailMenu";
 import { groupData } from "../components/DummyData";
 import {
   formLabels,
+  contactGender,
   eventSubjectsArr,
   eventType,
   indReportFreq,
@@ -27,7 +28,8 @@ const kDisplayComponent = {
   InputTextMultiline: SimpleText,
   MultiSelectField: ListItems,
   SingleSelectField: SimpleText,
-  viewOnly: ListItems,
+  viewOnlyMulti: ListItems,
+  viewOnlySingle: SimpleText,
   nullFunc: (info) => null,
 };
 
@@ -68,6 +70,8 @@ const GroupDetail = () => {
       // name: (thisItem, field) => [thisItem.fname, thisItem.lname].join(" "),
       fname: displayField,
       lname: displayField,
+      gender: (thisItem, field) =>
+        displayAssociatedName(thisItem, field, contactGender),
       orgIds: (thisItem, field) => displayItemMap(thisItem, field, orgs),
       eventIds: (thisItem, field) => displayItemMap(thisItem, field, events),
     },
