@@ -68,10 +68,11 @@
     font-family: 'Lato', sans-serif;
     font-weight: 700;
     margin: 2vh 4vw 4vh;
-    box-shadow: 1px 1px 2px #CFCDC9;
+    box-shadow: 1px 1px 1px #dbdad6;
 }
 
 #gl .addRecord:hover {
     cursor:pointer;
     box-shadow: none;
+    background-color: hsl(213, 65%, 88%);
 }
