@@ -35,6 +35,11 @@ const DummyFunction = () => null;
 const loadData = () => groupData;
 
 function App() {
+  const [csvMode, setCsvMode] = useState(false);
+  // toggles whether views should draw data from csvmode or not -->
+  // I'll probably move this into another component when I'm setting up
+  // how to get the initial data
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>

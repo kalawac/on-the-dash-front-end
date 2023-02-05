@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useState, useRef } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
@@ -13,6 +13,7 @@ const EventAttendance2 = () => {
   // TBD: save data to cache --> optional reach
 
   const { itemId } = useParams();
+  const navigate = useNavigate();
   const saAttRef = useRef(null); // check to see if we still need this at the end
   const saCompRef = useRef(null); // check to see if we still need this at the end
 
@@ -81,6 +82,7 @@ const EventAttendance2 = () => {
       completion: compArr,
     };
     console.log(requestBody);
+    return navigate("/");
   };
 
   const mapRows = () => {
@@ -107,7 +109,7 @@ const EventAttendance2 = () => {
           checked={checked}
           onChange={handleClick}
           showCompletion={eventTypeTraining}
-          index={i}
+          index={pId}
         />
       );
     });
@@ -172,7 +174,7 @@ const EventAttendance2 = () => {
               <FontAwesomeIcon icon={solid("check")} />
             </span>
           </button>
-          <Link to={`..`}>
+          <Link to={-1}>
             <button title="Close form">
               <span className="fa-solid fa-classic fa-xmark">
                 <FontAwesomeIcon icon={solid("xmark")} />

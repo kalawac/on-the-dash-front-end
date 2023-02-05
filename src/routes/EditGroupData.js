@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { useOutletContext, useParams, useNavigate } from "react-router-dom";
+import {
+  Link,
+  useOutletContext,
+  useParams,
+  useNavigate,
+} from "react-router-dom";
 
 import "./EditGroupData.css";
 
@@ -29,14 +34,14 @@ import DetailMenu from "../components/DetailMenu";
 //   }
 // };
 
-const isError = () => {
-  return (
-    <p className="error">
-      This information doesn't seem to be in the correct format. Please check it
-      and try again.
-    </p>
-  );
-};
+// const isError = () => {
+//   return (
+//     <p className="error">
+//       This information doesn't seem to be in the correct format. Please check it
+//       and try again.
+//     </p>
+//   );
+// };
 
 const EditGroupData = () => {
   const [thisData] = useOutletContext();
@@ -122,6 +127,11 @@ const EditGroupData = () => {
 
           <button id="submit">Submit Changes</button>
         </form>
+        <div>
+          <Link to={`../${itemId}`}>
+            <button id="cancel">Cancel</button>
+          </Link>
+        </div>
       </section>
       <section id="dmEg" className="flexC">
         <DetailMenu />
