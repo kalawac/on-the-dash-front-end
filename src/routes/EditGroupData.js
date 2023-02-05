@@ -110,6 +110,9 @@ const EditGroupData = () => {
   // atm, orgIDs are being bundled but orgs are out of sync until the data is grabbed again
   const submitForm = (formData) => {
     console.log("submitting form");
+    if (formData?.age === "") {
+      formData.age = 0;
+    }
     console.log(formData);
     return navigate(`..`);
   };

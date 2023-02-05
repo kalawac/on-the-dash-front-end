@@ -19,3 +19,7 @@
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
 }
+
+.svg-inline--fa {
+  color: #002F6C;
+}

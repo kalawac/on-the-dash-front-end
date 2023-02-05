@@ -17,13 +17,15 @@ import { groupData } from "./DummyData";
 //     key: subject id, value: subject name
 // eventSubjects -- object of all subjects in selectOptions.subjects,
 //     key: subject id, value: subject name
-// eventSubjectsArr -- list of subject objects with id and name key-value pairs
+// eventSubjectsArr -- array of subject objects with id and name key-value pairs
 // eventType -- object of all types in selectOptions.type,
 //     key: type id, value: type name
+// indDisaggregatesArr -- array of indicator disaggregate objects with id and name key-value pairs
 // indReportFreq -- object of all options in selectOptions.reportFreq,
 //     key: type id, value: type name
 // indCalcFreq -- object of all options in selectOptions.reportFreq,
 //     key: type id, value: type name
+// orgWorkFocusArr -- array of work focus objects with id and name key-value pairs
 
 const nullFunc = (props) => null;
 
@@ -39,6 +41,7 @@ export const modelColumns = {
     id: nullFunc,
     fname: InputText,
     lname: InputText,
+    age: InputNumber,
     gender: SingleSelectField,
     // orgs: nullFunc,
     orgIds: MultiSelectField,
@@ -51,10 +54,10 @@ export const modelColumns = {
     subjects: MultiSelectField,
     // num_days: SingleSelectField, // just do one day at a time
     // consecutive: SingleSelectField, // are the days consective? Yes / No (may be better as radio button but let's work with this for now)
-    dates: InputDate, // TBD input date -- just doing one day for now. eventually needs to capture an array of dates -- maybe 1, maybe multiple non-consecutive, maybe multiple consecutive
-    participants: MultiSelectField, // this will then need to generate a list of participants in a matrix, sighghghghgh. maybe I hardcode that item.
-    attendance: viewOnlyMulti, // input after this step / edit separately
-    completion: viewOnlyMulti, // input after this step / edit separately
+    dates: InputDate, // just doing one day for now. eventually needs to capture an array of dates -- maybe 1, maybe multiple non-consecutive, maybe multiple consecutive
+    participants: MultiSelectField,
+    attendance: viewOnlyMulti,
+    completion: viewOnlyMulti,
   },
   indicators: {
     id: nullFunc,
@@ -62,21 +65,23 @@ export const modelColumns = {
     indCat: nullFunc,
     standard: viewOnlySingle,
     irn: SingleSelectField, // irn generates ind_name, ind_cat, standard, definition, data_type, disaggregates, and conditions in the DB
-    definition: viewOnlySingle, // TBD: multiline version
+    definition: viewOnlySingle,
     dataType: viewOnlySingle,
-    dataSource: InputTextMultiline, // multiline
-    method: InputTextMultiline, //multiline
+    disaggregates: viewOnlyMulti,
+    dataSource: InputTextMultiline,
+    method: InputTextMultiline,
     reportFreq: SingleSelectField,
     calcFreq: SingleSelectField,
-    blDate: InputDate, // input date
-    blValue: InputNumber, // TBD: input number
-    lopTarget: InputNumber, // input number
-    y1Target: InputNumber, // input number
-    y2Target: InputNumber, // input number
+    blDate: InputDate,
+    blValue: InputNumber,
+    lopTarget: InputNumber,
+    y1Target: InputNumber,
+    y2Target: InputNumber,
   },
   orgs: {
     id: nullFunc,
     name: InputText,
+    workFocus: MultiSelectField,
     contactIds: nullFunc,
   },
 };
@@ -85,6 +90,7 @@ export const modelColumnsRequired = {
   contacts: {
     fname: true,
     lname: true,
+    age: false,
     orgIds: false,
     eventIds: false,
   },
@@ -92,32 +98,35 @@ export const modelColumnsRequired = {
     name: true,
     type: true,
     subjects: false,
-    // num_days: SingleSelectField, // just do one day at a time
-    // consecutive: SingleSelectField, // are the days consective? Yes / No (may be better as radio button but let's work with this for now)
-    dates: true, // TBD input date -- just doing one day for now. eventually needs to capture an array of dates -- maybe 1, maybe multiple non-consecutive, maybe multiple consecutive
-    participants: false, // this will then need to generate a list of participants in a matrix, sighghghghgh. maybe I hardcode that item.
+    // num_days: true,
+    // consecutive: true,
+    dates: true,
+    participants: false,
     attendance: false,
     completion: false,
   },
   indicators: {
     irn: true, // irn generates ind_name, ind_cat, standard, definition, data_type and conditions in the DB
-    dataSource: true, // multiline
-    method: true, //multiline
+    dataSource: true,
+    disaggregates: false,
+    method: true,
     reportFreq: true,
     calcFreq: true,
-    blDate: true, // input date
-    blValue: true, // TBD: input number
-    lopTarget: false, // input number
-    y1Target: false, // input number
-    y2Target: false, // input number
+    blDate: true,
+    blValue: true,
+    lopTarget: false,
+    y1Target: false,
+    y2Target: false,
   },
   orgs: {
     name: true,
     contactIds: false,
+    workFocus: false,
   },
 };
 
 export const formLabels = {
+  age: "Age",
   attendance: "Attended",
   bldate: "Baseline Date",
   blValue: "Baseline Value",
@@ -127,7 +136,8 @@ export const formLabels = {
   dataSource: "Data Source(s)",
   dates: "Date",
   definition: "Indicator Definition",
-  eventIds: "Events", // try to figure out how to show attended, completed for each event. later.
+  disaggregates: "Disaggregates",
+  eventIds: "Events",
   fname: "First Name",
   gender: "Gender",
   irn: "Indicator Reference Number",
@@ -140,11 +150,11 @@ export const formLabels = {
   reportFreq: "Reporting Frequency",
   subjects: "Subject(s) Covered",
   type: "Event Type",
+  workFocus: "Main Work Focus/Foci",
   y1Target: "Year 1 Target",
   y2Target: "Year 2 Target",
 };
 
-// make changes to event subject and type lists here
 export const selectOptions = {
   attendance: [
     { id: "1", name: "Yes" },
@@ -167,6 +177,11 @@ export const selectOptions = {
   completion: [
     { id: "1", name: "Yes" },
     { id: "0", name: "No" },
+  ],
+  disaggregates: [
+    { id: "1", name: "Age" },
+    { id: "2", name: "Gender" },
+    { id: "3", name: "Main Work Focus" },
   ],
   events: groupData.events,
   gender: [
@@ -232,6 +247,28 @@ export const selectOptions = {
       name: "Other",
     },
   ],
+  workFocus: [
+    {
+      id: "1",
+      name: "Indigenous people(s)",
+    },
+    {
+      id: "2",
+      name: "LGBTI issues",
+    },
+    {
+      id: "3",
+      name: "Religious freedom",
+    },
+    {
+      id: "4",
+      name: "Women's rights",
+    },
+    {
+      id: "99",
+      name: "Other",
+    },
+  ],
 };
 
 const getIdNameObj = (arr) =>
@@ -245,6 +282,10 @@ export const eventSubjectsArr = selectOptions.subjects;
 
 export const eventType = getIdNameObj(selectOptions.type);
 
+export const indDisaggregatesArr = selectOptions.disaggregates;
+
 export const indReportFreq = getIdNameObj(selectOptions.reportFreq);
 
 export const indCalcFreq = getIdNameObj(selectOptions.calcFreq);
+
+export const orgWorkFocusArr = selectOptions.workFocus;
