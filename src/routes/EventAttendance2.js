@@ -104,12 +104,12 @@ const EventAttendance2 = () => {
       const eventTypeTraining = thisData.type === "4" ? true : false;
       return (
         <EventAttendanceRow
+          key={pId}
           pName={pName}
           pId={pId}
           checked={checked}
           onChange={handleClick}
           showCompletion={eventTypeTraining}
-          index={pId}
         />
       );
     });
