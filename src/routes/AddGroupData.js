@@ -41,6 +41,10 @@ const isError = () => {
 };
 
 const AddGroupData = () => {
+  // TBD: Add protection (or check to ensure protection) so last name
+  // must have at least one character. some places have no first name.
+  // maybe add a warning pop-up to confirm that?
+
   const { groupName } = useParams();
   const navigate = useNavigate();
 

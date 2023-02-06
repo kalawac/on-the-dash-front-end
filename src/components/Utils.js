@@ -189,6 +189,7 @@ export const selectOptions = {
     { id: "2", name: "Male" },
     { id: "3", name: "Non-binary" },
     { id: "4", name: "Other" },
+    { id: "9", name: "Unknown" },
   ],
   indicators: groupData.indicators,
   irn: [
