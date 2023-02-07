@@ -136,9 +136,6 @@ const EditGroupData = () => {
           </Link>
         </div>
       </section>
-      <section id="dmEg" className="flexC">
-        <DetailMenu />
-      </section>
     </div>
   );
 };

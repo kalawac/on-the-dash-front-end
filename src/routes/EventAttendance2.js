@@ -1,8 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { FaCheck, FaTimes } from "react-icons/fa";
 
 import "./EventAttendance2.css";
 
@@ -170,15 +169,11 @@ const EventAttendance2 = () => {
             onClick={() => handleSubmit()}
             title="Submit form"
           >
-            <span className="fa-solid fa-classic fa-check">
-              <FontAwesomeIcon icon={solid("check")} />
-            </span>
+            <FaCheck className="fa-icon" />
           </button>
           <Link to={-1}>
             <button title="Close form">
-              <span className="fa-solid fa-classic fa-xmark">
-                <FontAwesomeIcon icon={solid("xmark")} />
-              </span>
+              <FaTimes className="fa-icon" />
             </button>
           </Link>
         </div>

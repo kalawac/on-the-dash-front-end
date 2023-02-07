@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { FaPlus } from "react-icons/fa";
 
 import "./DetailMenuAddOnly.css";
 
@@ -9,8 +8,8 @@ const DetailMenuAddOnly = () => {
     <div id="dm3" className="flexC">
       <Link to={"../new"}>
         <button title="Add New">
-          <span className="fa-solid fa-classic fa-plus">
-            <FontAwesomeIcon icon={solid("plus")} />
+          <span>
+            <FaPlus className="fa-icon" />
           </span>
         </button>
       </Link>
