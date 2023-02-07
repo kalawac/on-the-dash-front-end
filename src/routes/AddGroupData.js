@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { FaTimes } from "react-icons/fa";
 
 import "./AddGroupData.css";
 
@@ -146,9 +145,7 @@ const AddGroupData = () => {
         <div id="dm3" className="flexC">
           <Link to={".."}>
             <button title="Close form">
-              <span className="fa-solid fa-classic fa-xmark">
-                <FontAwesomeIcon icon={solid("xmark")} />
-              </span>
+              <FaTimes className="fa-icon" />
             </button>
           </Link>
         </div>

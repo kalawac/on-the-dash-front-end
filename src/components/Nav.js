@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import {
+  FaRegChartBar,
+  FaThList,
+  FaRegAddressCard,
+  FaPeopleArrows,
+  FaRegCalendarAlt,
+  FaListUl,
+} from "react-icons/fa";
 
 import "./Nav.css";
 
@@ -16,50 +22,38 @@ const Nav = () => {
             Select View
           </button>
           <div id="viewContent" className={`flexR hiddenVC`}>
-            {/* <div className="row hiddenRow"> */}
             <Link to={`/`}>
               <button title="Dashboard">
-                <span className="fa-solid fa-classic fa-chart-column">
-                  <FontAwesomeIcon icon={solid("chart-column")} />
-                </span>
+                <FaRegChartBar className="fa-icon" />
               </button>
             </Link>
             <Link to={`/pitt`}>
               <button title="PITT">
-                <span className="fa-solid fa-classic fa-table-list">
-                  <FontAwesomeIcon icon={solid("table-list")} />
-                </span>
+                <FaThList className="fa-icon" />
               </button>
             </Link>
             <Link to={`/indicator-table`}>
               <button title="Indicators">
-                <span className="fa-solid fa-classic fa-list">
-                  <FontAwesomeIcon icon={solid("list")} />
-                </span>
+                <FaListUl className="fa-icon" />
               </button>
             </Link>
             <Link to={`/contacts`}>
               <button title="Contacts">
-                <span className="fa-solid fa-classic fa-address-book">
-                  <FontAwesomeIcon icon={solid("address-book")} />
-                </span>
+                <FaRegAddressCard className="fa-icon" />
               </button>
             </Link>
             <Link to={`/orgs`}>
               <button title="Organizations">
-                <span className="fa-solid fa-classic fa-people-roof">
-                  <FontAwesomeIcon icon={solid("people-roof")} />
-                </span>
+                <FaPeopleArrows className="fa-icon" />
               </button>
             </Link>
             <Link to={`/events`}>
               <button title="Events">
-                <span className="fa-solid fa-classic fa-calendar-days">
-                  <FontAwesomeIcon icon={solid("calendar-days")} />
+                <span>
+                  <FaRegCalendarAlt className="fa-icon" />
                 </span>
               </button>
             </Link>
-            {/* </div> */}
           </div>
         </div>
       </div>
