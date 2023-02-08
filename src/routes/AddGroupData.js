@@ -30,14 +30,14 @@ import {
 //   }
 // };
 
-const isError = () => {
-  return (
-    <p className="error">
-      This information doesn't seem to be in the correct format. Please check it
-      and try again.
-    </p>
-  );
-};
+// const isError = () => {
+//   return (
+//     <p className="error">
+//       This information doesn't seem to be in the correct format. Please check it
+//       and try again.
+//     </p>
+//   );
+// };
 
 const AddGroupData = () => {
   // TBD: Add protection (or check to ensure protection) so last name

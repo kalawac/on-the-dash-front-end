@@ -43,7 +43,6 @@ export const modelColumns = {
     lname: InputText,
     age: InputNumber,
     gender: SingleSelectField,
-    // orgs: nullFunc,
     orgIds: MultiSelectField,
     eventIds: nullFunc,
   },
@@ -124,6 +123,44 @@ export const modelColumnsRequired = {
     workFocus: false,
   },
 };
+
+const simpleText = (data) => <>{data}</>;
+
+const listItems = (data) => {
+  const itemList = data.map((item, index) => <li key={index}>{item}</li>);
+  return <ul>{itemList}</ul>;
+};
+
+const nullDisplay = (data) => null;
+
+// uglifying process prevents dynamic determination using data in modelColumns
+const specialDisplay = {
+  contacts: {
+    id: nullDisplay,
+    orgIds: listItems,
+    eventIds: nullDisplay,
+  },
+  events: {
+    id: nullDisplay,
+    subjects: listItems,
+    participants: listItems,
+    attendance: listItems,
+    completion: listItems,
+  },
+  indicators: {
+    id: nullDisplay,
+    indCat: nullDisplay,
+    disaggregates: listItems,
+  },
+  orgs: {
+    id: nullDisplay,
+    workFocus: listItems,
+    contactIds: nullDisplay,
+  },
+};
+
+export const displayColumns = (groupName, field) =>
+  specialDisplay?.[groupName]?.[field] ?? simpleText;
 
 export const formLabels = {
   age: "Age",

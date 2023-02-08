@@ -13,7 +13,7 @@ import {
   modelColumns,
   modelColumnsRequired,
 } from "../components/Utils";
-import DetailMenu from "../components/DetailMenu";
+// import DetailMenu from "../components/DetailMenu";
 
 // const handleSubmit = async (formData) => {
 //   const requestBody = formData;
