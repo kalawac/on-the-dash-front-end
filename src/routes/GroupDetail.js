@@ -13,27 +13,8 @@ import {
   indReportFreq,
   indCalcFreq,
   orgWorkFocusArr,
-  modelColumns,
+  displayColumns,
 } from "../components/Utils";
-
-const SimpleText = (data) => <>{data}</>;
-
-const ListItems = (data) => {
-  const itemList = data.map((item, index) => <li key={index}>{item}</li>);
-  return <ul>{itemList}</ul>;
-};
-
-const kDisplayComponent = {
-  InputDate: SimpleText,
-  InputNumber: SimpleText,
-  InputText: SimpleText,
-  InputTextMultiline: SimpleText,
-  MultiSelectField: ListItems,
-  SingleSelectField: SimpleText,
-  viewOnlyMulti: ListItems,
-  viewOnlySingle: SimpleText,
-  nullFunc: (info) => null,
-};
 
 const GroupDetail = () => {
   const [thisData] = useOutletContext(); // we will need all the data to transform ids into names
@@ -135,13 +116,13 @@ const GroupDetail = () => {
     const fieldArr = itemArr.map((field, index) => {
       const fieldLabel = formLabels?.[field];
       const info = modelDisplay?.[groupName]?.[field](thisItem, field);
-      const DisplayedData =
-        kDisplayComponent?.[modelColumns[groupName][field].name];
+      const displayFunction = displayColumns(groupName, field);
+      const displayedData = displayFunction(info);
 
       return (
         <div key={index} className="itemField">
           <div className="label">{fieldLabel}:</div>
-          <div className="info">{DisplayedData(info)}</div>
+          <div className="info">{displayedData}</div>
         </div>
       );
     });

@@ -17,7 +17,8 @@
 ## Steps for adding a field that should never be displayed to the user (no view, no add, no edit)
 1. Include the relevant field in the database and ensure that it is being exported in a route.
 2. In [ HELPER FUNCTION THAT IS DOING THE RENAMING OF THE KEYS FROM THE BACKEND], figure out what the key will be named in the front end. These instructions will refer to this as the 'field name' in the steps below. 
-3. In `Utils`, find the relevant model object in `modelColumns` (e.g., `contacts`, `events`, etc.). Make a new key using the field name (see step #2). The value should be `nullFunc`.
+3. In `Utils`, find the relevant model object (e.g., `contacts`, `events`, etc.) in `modelColumns`. Make a new key using the field name (see step #2). The value should be `nullFunc`.
+4. In `Utils`, find the relevant model object (e.g., `contacts`, `events`, etc.) in `specialDisplay`. Make a new key using the field name. The value should be `nullDisplay`.
 
 ## Steps for adding a view-only field (no add, no edit)
 1. Include the relevant field in the database and ensure that it is being exported in a route.
@@ -25,7 +26,8 @@
 3. In `Utils`, find the relevant model object in `modelColumns` (e.g., `contacts`, `events`, etc.). Make a new key using the field name (see step #2). Choose one of the following values to indicate how the field should be handled for 'add', 'edit' and 'view' features:
     - `viewOnlySingle`: the user should only be able to view the associated data (no add, no edit). The data will be displayed in one `<p>` element.
     - `viewOnlyMulti`: the user should only be able to view the associated data (no add, no edit). The data will be displayed as an unordered list (`<ul>`), with each element in the data array mapped to a `<li>` element.
-4. In `Utils`, add a key to `formLabels` using the field name. The value should be the label associated with the field in view components.
+4. For `viewOnlyMulti` (in step #3): In `Utils`, find the relevant model object (e.g., `contacts`, `events`, etc.) in `specialDisplay`. Make a new key using the field name. The value should be `listItems`.
+5. In `Utils`, add a key to `formLabels` using the field name. The value should be the label associated with the field in view components.
 
 ## Steps for adding a text field (single or multiline), a date field or a number field
 1. Include the relevant field in the database and ensure that it is being exported in a route.
@@ -67,11 +69,12 @@
 4. In `Utils`, find the relevant model object in `modelColumnsRequired`. Make a new key within the relevant model object using the relevant field name. Choose the appropriate value:
     - `true`: The user will be required to complete this field before submitting the form.
     - `false`: The user will not be required to complete this field before submitting the form.
-5. In `Utils`, add a key to `formLabels` using the field name. The value should be the label associated with the field in add, edit and view components.
-6. In `Utils`, add a key that corresponds to the field name, with options for the field to `selectOptions` in the form of an array of objects. Each object should represent one option and should contain the following key-value pairs:
+5. In `Utils`, find the relevant model object (e.g., `contacts`, `events`, etc.) in `specialDisplay`. Make a new key using the field name. The value should be `listItems`.
+6. In `Utils`, add a key to `formLabels` using the field name. The value should be the label associated with the field in add, edit and view components.
+7. In `Utils`, add a key that corresponds to the field name, with options for the field to `selectOptions` in the form of an array of objects. Each object should represent one option and should contain the following key-value pairs:
    - `id`: value to be transmitted by the option if selected (that is, value to be bundled and sent back to the database)
    - `name`: label to be viewed by the user (for the respective option)
-7. In `Utils`, below `getIdNameObj`, create and export the array of objects created in step #6, above. The variable name should start with a reference to the relevant model (contact, event, ind), followed by the field name, followed by "Arr": e.g. `eventSubjectsArr`. This should be done regardless of whether the `id` and `name` values match or differ.
-8. In `Utils`,  in the comments at the top ("Quick list of exports"), add the variable created in step #6, above, with an appropriate summary.
-9. In `GroupDetail`, import the variable created in step #6, above, to the import list starting on line 7.
-10. In `GroupDetail`, include the field in `modelDisplay`, as a key in the relevant model object. Unless the item requires special transformation before display, the value should be `(thisItem, field) => displayItemMap(thisItem, field, ###)`, where ### should be the associated imported variable in the import statement that starts on line 7. If special transformation is needed, write a helper function or anonymous function that takes two parameters, `(thisItem, field)`, and returns an expression indicating how the item should be displayed. For an example, see `displayItemMap` in `GroupDetail`.
+8. In `Utils`, below `getIdNameObj`, create and export the array of objects created in step #6, above. The variable name should start with a reference to the relevant model (contact, event, ind), followed by the field name, followed by "Arr": e.g. `eventSubjectsArr`. This should be done regardless of whether the `id` and `name` values match or differ.
+9. In `Utils`,  in the comments at the top ("Quick list of exports"), add the variable created in step #6, above, with an appropriate summary.
+10. In `GroupDetail`, import the variable created in step #6, above, to the import list starting on line 7.
+11. In `GroupDetail`, include the field in `modelDisplay`, as a key in the relevant model object. Unless the item requires special transformation before display, the value should be `(thisItem, field) => displayItemMap(thisItem, field, ###)`, where ### should be the associated imported variable in the import statement that starts on line 7. If special transformation is needed, write a helper function or anonymous function that takes two parameters, `(thisItem, field)`, and returns an expression indicating how the item should be displayed. For an example, see `displayItemMap` in `GroupDetail`.
