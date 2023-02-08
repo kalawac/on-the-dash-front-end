@@ -116,7 +116,8 @@ const GroupDetail = () => {
     const fieldArr = itemArr.map((field, index) => {
       const fieldLabel = formLabels?.[field];
       const info = modelDisplay?.[groupName]?.[field](thisItem, field);
-      const displayedData = displayColumns(groupName, field)(info);
+      const displayFunction = displayColumns(groupName, field);
+      const displayedData = displayFunction(info);
 
       return (
         <div key={index} className="itemField">
