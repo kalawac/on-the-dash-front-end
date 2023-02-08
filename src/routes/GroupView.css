@@ -39,7 +39,7 @@
     text-decoration: none;
 }
 
-#gl #groupList li {
+.lgi {
     list-style: none;
     text-decoration:none;
     cursor: pointer;
@@ -48,12 +48,12 @@
 
 }
 
-#gl #groupList li .item:any-link {
+.item:any-link {
     text-decoration: none;
     color: inherit;
 }
 
-#gl #groupList li:hover {
+.lgi:hover {
     /* background-color: #d5e4f6; */
     font-weight: bold;
 }

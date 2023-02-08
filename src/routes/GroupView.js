@@ -8,6 +8,8 @@ import {
 
 import "./GroupView.css";
 
+// remember to remove bootstrap classes if you don't end up using them
+
 const GroupView = () => {
   const groupData = useLoaderData();
   const { groupName } = useParams();
@@ -27,11 +29,14 @@ const GroupView = () => {
       const label = el?.name ?? [el?.fname, el?.lname].join(" ");
 
       return (
-        <li key={index} className="list-group-item list-group-item-action">
-          <Link to={`${el.id}`} className="item">
+        <Link to={`${el.id}`} className="item">
+          <li
+            key={index}
+            className="lgi list-group-item list-group-item-action"
+          >
             {label}
-          </Link>
-        </li>
+          </li>
+        </Link>
       );
     });
   };
