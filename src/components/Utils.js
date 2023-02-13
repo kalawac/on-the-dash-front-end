@@ -18,8 +18,8 @@ import { groupData } from "./DummyData";
 // eventSubjects -- object of all subjects in selectOptions.subjects,
 //     key: subject id, value: subject name
 // eventSubjectsArr -- array of subject objects with id and name key-value pairs
-// eventType -- object of all types in selectOptions.type,
-//     key: type id, value: type name
+// eventType -- object of all event types in selectOptions.eventType,
+//     key: event type id, value: event type name
 // indDisaggregatesArr -- array of indicator disaggregate objects with id and name key-value pairs
 // indReportFreq -- object of all options in selectOptions.reportFreq,
 //     key: type id, value: type name
@@ -43,24 +43,24 @@ export const modelColumns = {
     lname: InputText,
     age: InputNumber,
     gender: SingleSelectField,
-    orgIds: MultiSelectField,
-    eventIds: nullFunc,
+    orgs: MultiSelectField, // changing this to orgs
+    events: nullFunc, // changing this to events
   },
   events: {
     id: nullFunc,
     name: InputText,
-    type: SingleSelectField,
+    eventType: SingleSelectField,
     subjects: MultiSelectField,
     // num_days: SingleSelectField, // just do one day at a time
     // consecutive: SingleSelectField, // are the days consective? Yes / No (may be better as radio button but let's work with this for now)
     dates: InputDate, // just doing one day for now. eventually needs to capture an array of dates -- maybe 1, maybe multiple non-consecutive, maybe multiple consecutive
-    participants: MultiSelectField,
-    attendance: viewOnlyMulti,
-    completion: viewOnlyMulti,
+    participants: MultiSelectField, // will have to make from participant data
+    attended: viewOnlyMulti, // will have to make from participant data
+    completed: viewOnlyMulti, // will have to make from participant data
   },
   indicators: {
     id: nullFunc,
-    indName: viewOnlySingle,
+    name: viewOnlySingle,
     indCat: nullFunc,
     standard: viewOnlySingle,
     irn: SingleSelectField, // irn generates ind_name, ind_cat, standard, definition, data_type, disaggregates, and conditions in the DB
@@ -80,29 +80,31 @@ export const modelColumns = {
   orgs: {
     id: nullFunc,
     name: InputText,
-    workFocus: MultiSelectField,
-    contactIds: nullFunc,
+    sector: SingleSelectField,
+    foci: MultiSelectField,
+    // contactIds: nullFunc,
   },
 };
 
 export const modelColumnsRequired = {
   contacts: {
-    fname: true,
+    fname: false, // not all cultures use first names
     lname: true,
     age: false,
-    orgIds: false,
-    eventIds: false,
+    gender: true,
+    orgs: false,
+    events: false,
   },
   events: {
     name: true,
-    type: true,
+    eventType: true,
     subjects: false,
     // num_days: true,
     // consecutive: true,
     dates: true,
     participants: false,
-    attendance: false,
-    completion: false,
+    attended: false,
+    completed: false,
   },
   indicators: {
     irn: true, // irn generates ind_name, ind_cat, standard, definition, data_type and conditions in the DB
@@ -119,8 +121,9 @@ export const modelColumnsRequired = {
   },
   orgs: {
     name: true,
-    contactIds: false,
-    workFocus: false,
+    sector: true,
+    foci: false,
+    // contactIds: false,
   },
 };
 
@@ -137,15 +140,15 @@ const nullDisplay = (data) => null;
 const specialDisplay = {
   contacts: {
     id: nullDisplay,
-    orgIds: listItems,
-    eventIds: nullDisplay,
+    orgs: listItems,
+    events: nullDisplay,
   },
   events: {
     id: nullDisplay,
     subjects: listItems,
     participants: listItems,
-    attendance: listItems,
-    completion: listItems,
+    attended: listItems,
+    completed: listItems,
   },
   indicators: {
     id: nullDisplay,
@@ -154,8 +157,8 @@ const specialDisplay = {
   },
   orgs: {
     id: nullDisplay,
-    workFocus: listItems,
-    contactIds: nullDisplay,
+    foci: listItems,
+    // contactIds: nullDisplay,
   },
 };
 
@@ -164,17 +167,17 @@ export const displayColumns = (groupName, field) =>
 
 export const formLabels = {
   age: "Age",
-  attendance: "Attended",
+  attended: "Attended",
   bldate: "Baseline Date",
   blValue: "Baseline Value",
   calcFreq: "Calculation Frequency",
-  completion: "Completed Training",
-  contactIds: "Associated Contacts",
+  completed: "Completed Training",
+  // contactIds: "Associated Contacts",
   dataSource: "Data Source(s)",
   dates: "Date",
   definition: "Indicator Definition",
   disaggregates: "Disaggregates",
-  eventIds: "Events",
+  events: "Events",
   fname: "First Name",
   gender: "Gender",
   irn: "Indicator Reference Number",
@@ -182,18 +185,19 @@ export const formLabels = {
   lopTarget: "Life of Project Target",
   method: "Methodology",
   name: "Name",
-  orgIds: "Associated Organization(s)",
+  orgs: "Associated Organization(s)",
   participants: "Participants",
   reportFreq: "Reporting Frequency",
+  sector: "Sector",
   subjects: "Subject(s) Covered",
-  type: "Event Type",
-  workFocus: "Main Work Focus/Foci",
+  eventType: "Event Type",
+  foci: "Main Work Focus/Foci",
   y1Target: "Year 1 Target",
   y2Target: "Year 2 Target",
 };
 
 export const selectOptions = {
-  attendance: [
+  attended: [
     { id: "1", name: "Yes" },
     { id: "0", name: "No" },
   ],
@@ -211,7 +215,7 @@ export const selectOptions = {
       name: "Annually",
     },
   ],
-  completion: [
+  completed: [
     { id: "1", name: "Yes" },
     { id: "0", name: "No" },
   ],
@@ -221,49 +225,7 @@ export const selectOptions = {
     { id: "3", name: "Main Work Focus" },
   ],
   events: groupData.events,
-  gender: [
-    { id: "1", name: "Female" },
-    { id: "2", name: "Male" },
-    { id: "3", name: "Non-binary" },
-    { id: "4", name: "Other" },
-    { id: "9", name: "Unknown" },
-  ],
-  indicators: groupData.indicators,
-  irn: [
-    { id: "DR.3.1-2", name: "DR.3.1-2" },
-    { id: "DR.3.2-5", name: "DR.3.2-5" },
-  ],
-  orgIds: groupData.orgs,
-  participants: groupData.contacts,
-  reportFreq: [
-    {
-      id: "1",
-      name: "Quarterly",
-    },
-    {
-      id: "2",
-      name: "Semi-Annually",
-    },
-    {
-      id: "3",
-      name: "Annually",
-    },
-  ],
-  subjects: [
-    {
-      id: "1",
-      name: "Subject 1",
-    },
-    {
-      id: "2",
-      name: "Subject 2",
-    },
-    {
-      id: "3",
-      name: "Subject 3",
-    },
-  ],
-  type: [
+  eventType: [
     {
       id: "1",
       name: "Conference/Forum",
@@ -285,7 +247,119 @@ export const selectOptions = {
       name: "Other",
     },
   ],
-  workFocus: [
+  gender: [
+    { id: "1", name: "Female" },
+    { id: "2", name: "Male" },
+    { id: "3", name: "Non-binary" },
+    { id: "4", name: "Other" },
+    { id: "9", name: "Unknown" }, // users are not inputting their own gender
+  ],
+  indicators: groupData.indicators,
+  irn: [
+    { id: "DR.3.1-2", name: "DR.3.1-2" },
+    { id: "DR.3.2-5", name: "DR.3.2-5" },
+  ],
+  orgs: groupData.orgs,
+  participants: groupData.contacts,
+  reportFreq: [
+    {
+      id: "1",
+      name: "Quarterly",
+    },
+    {
+      id: "2",
+      name: "Semi-Annually",
+    },
+    {
+      id: "3",
+      name: "Annually",
+    },
+  ],
+  sector: [
+    {
+      id: "1",
+      name: "Academia / Education",
+    },
+    {
+      id: "2",
+      name: "Civil Society / NGO",
+    },
+    {
+      id: "3",
+      name: "Government",
+    },
+    {
+      id: "4",
+      name: "Media",
+    },
+    {
+      id: "5",
+      name: "Private Sector Business",
+    },
+    {
+      id: "6",
+      name: "Private Sector Foundation",
+    },
+    {
+      id: "7",
+      name: "Social Enterprise",
+    },
+    {
+      id: "8",
+      name: "Multilateral / Bilateral Funder",
+    },
+    {
+      id: "99",
+      name: "Other",
+    },
+  ],
+  subjects: [
+    {
+      id: "1",
+      name: "Accounting",
+    },
+    {
+      id: "2",
+      name: "Anti-Corruption: General",
+    },
+    {
+      id: "3",
+      name: "Anti-Corruption: Forensic Accounting",
+    },
+    {
+      id: "4",
+      name: "Anti-Corruption: Monitoring the Government",
+    },
+    {
+      id: "5",
+      name: "Anti-Corruption: Monitoring Stakeholders",
+    },
+    {
+      id: "6",
+      name: "Anti-Corruption: Procurement Practices",
+    },
+    {
+      id: "7",
+      name: "Civic Education",
+    },
+    {
+      id: "8",
+      name: "Conflict Mediation",
+    },
+    {
+      id: "9",
+      name: "Conflict Resolution",
+    },
+    {
+      id: "10",
+      name: "Consensus Building",
+    },
+    {
+      id: "99",
+      name: "Other",
+    },
+  ],
+  foci: [
     {
       id: "1",
       name: "Indigenous people(s)",
@@ -318,7 +392,7 @@ export const eventSubjects = getIdNameObj(selectOptions.subjects);
 
 export const eventSubjectsArr = selectOptions.subjects;
 
-export const eventType = getIdNameObj(selectOptions.type);
+export const eventType = getIdNameObj(selectOptions.eventType);
 
 export const indDisaggregatesArr = selectOptions.disaggregates;
 
@@ -326,4 +400,4 @@ export const indReportFreq = getIdNameObj(selectOptions.reportFreq);
 
 export const indCalcFreq = getIdNameObj(selectOptions.calcFreq);
 
-export const orgWorkFocusArr = selectOptions.workFocus;
+export const orgWorkFocusArr = selectOptions.foci;

@@ -94,7 +94,7 @@ const GroupDetail = () => {
     },
     orgs: {
       name: displayField,
-      workFocus: (thisItem, field) =>
+      foci: (thisItem, field) =>
         displayItemMap(thisItem, field, orgWorkFocusArr),
       contactIds: (thisItem, field) =>
         displayItemMap(thisItem, field, contacts),
