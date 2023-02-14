@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -6,7 +6,6 @@ import {
   RouterProvider,
   Navigate,
 } from "react-router-dom";
-// import axios from "axios";
 // import rd3 from "react-d3-library";
 
 import "./App.css";
@@ -27,18 +26,22 @@ import Pitt from "./routes/Pitt";
 import Settings from "./routes/Settings";
 import SignUp from "./routes/SignUp";
 
-import { groupData } from "./components/DummyData";
 import FourOhFour from "./routes/FourOhFour";
 
 const DummyFunction = () => null;
 
-const loadData = () => groupData;
+// const loadData = () => groupData;
 
 function App() {
-  const [csvMode, setCsvMode] = useState(false);
-  // toggles whether views should draw data from csvmode or not -->
-  // I'll probably move this into another component when I'm setting up
-  // how to get the initial data
+  let [csvMode, setCsvMode] = useState(false);
+
+  const loadData = () => {
+    return {
+      csvMode: csvMode,
+      // appData: groupData,
+      // loadingStatus: loading,
+    };
+  };
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -47,38 +50,30 @@ function App() {
           <Route
             path="/"
             element={<Dashboard />}
-            loader={DummyFunction}
             errorElement={<ErrorPage />}
           />
-          <Route
-            path="/pitt"
-            element={<Pitt />}
-            loader={DummyFunction}
-            errorElement={<ErrorPage />}
-          />
+          <Route path="/pitt" element={<Pitt />} errorElement={<ErrorPage />} />
           <Route
             path="/indicator-table"
             element={<IndicatorTableView />}
-            loader={DummyFunction}
             errorElement={<ErrorPage />}
           />
           <Route
             path="/settings"
             element={<Settings />}
-            loader={DummyFunction}
             errorElement={<ErrorPage />}
           />
           <Route
             path="/import"
             element={<ImportMenu />}
-            loader={DummyFunction}
             errorElement={<ErrorPage />}
           />
           <Route
             path="/:groupName"
             element={<GroupView />}
             loader={loadData}
-            errorElement={<FourOhFour />}
+            errorElement={<ErrorPage />}
+            // errorElement={<FourOhFour />} // change back at end
           >
             <Route
               path="new"

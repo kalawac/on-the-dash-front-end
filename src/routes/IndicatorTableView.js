@@ -19,6 +19,8 @@ const IndicatorTableView = () => {
     { field: "price" },
   ]);
 
+  // it may make sense for this component to do its own API calls
+
   return (
     <section id="itv" className="flexC">
       <h1>Indicator Details</h1>

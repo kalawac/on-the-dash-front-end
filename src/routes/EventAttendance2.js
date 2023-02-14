@@ -6,7 +6,7 @@ import { FaCheck, FaTimes } from "react-icons/fa";
 import "./EventAttendance2.css";
 
 import EventAttendanceRow from "../components/EventAttendanceRow";
-import { groupData } from "../components/DummyData";
+import { dummyGroupData } from "../components/DummyData";
 
 const EventAttendance2 = () => {
   // TBD: save data to cache --> optional reach
@@ -16,10 +16,10 @@ const EventAttendance2 = () => {
   const saAttRef = useRef(null); // check to see if we still need this at the end
   const saCompRef = useRef(null); // check to see if we still need this at the end
 
-  const [thisData] = groupData.events.filter((e) => e.id === itemId);
+  const [thisData] = dummyGroupData.events.filter((e) => e.id === itemId);
 
   const participants = thisData?.participants;
-  const { contacts } = groupData;
+  const { contacts } = dummyGroupData;
 
   const participantNames = participants.map((id) =>
     contacts

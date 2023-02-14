@@ -4,7 +4,7 @@ import InputText from "./InputText";
 import InputTextMultiline from "./InputTextMultiline";
 import MultiSelectField from "./MultiSelectField";
 import SingleSelectField from "./SingleSelectField";
-import { groupData } from "./DummyData";
+import { dummyGroupData } from "./DummyData";
 
 // Quick list of exports:
 // modelColumns -- for use in creating AddData and EditData forms;
@@ -224,7 +224,7 @@ export const selectOptions = {
     { id: "2", name: "Gender" },
     { id: "3", name: "Main Work Focus" },
   ],
-  events: groupData.events,
+  events: dummyGroupData.events,
   eventType: [
     {
       id: "1",
@@ -254,13 +254,29 @@ export const selectOptions = {
     { id: "4", name: "Other" },
     { id: "9", name: "Unknown" }, // users are not inputting their own gender
   ],
-  indicators: groupData.indicators,
+  gvContacts: [
+    { id: "default", name: "Last Name (A-Z)" },
+    { id: "desc", name: "Last Name (Z-A)" },
+    { id: "fname", name: "First Name (A-Z)" },
+    { id: "fname-desc", name: "First Name (Z-A)" },
+  ],
+  gvEvents: [
+    { id: "default", name: "Event Name (A-Z)" },
+    { id: "desc", name: "Event Name (Z-A)" },
+    { id: "date-desc", name: "Event Date (most recent first)" },
+    { id: "date", name: "Event Date (oldest first)" },
+  ],
+  gvOrgs: [
+    { id: "default", name: "Organization Name (A-Z)" },
+    { id: "desc", name: "Organization Name (Z-A)" },
+  ],
+  indicators: dummyGroupData.indicators,
   irn: [
     { id: "DR.3.1-2", name: "DR.3.1-2" },
     { id: "DR.3.2-5", name: "DR.3.2-5" },
   ],
-  orgs: groupData.orgs,
-  participants: groupData.contacts,
+  orgs: dummyGroupData.orgs,
+  participants: dummyGroupData.contacts,
   reportFreq: [
     {
       id: "1",

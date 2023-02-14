@@ -3,7 +3,7 @@ import { Link, useOutletContext, useParams } from "react-router-dom";
 import "./GroupDetail.css";
 
 import DetailMenu from "../components/DetailMenu";
-import { groupData } from "../components/DummyData";
+import { dummyGroupData } from "../components/DummyData";
 import {
   formLabels,
   contactGender,
@@ -27,7 +27,7 @@ const GroupDetail = () => {
   const itemName =
     thisItem?.name ?? [thisItem?.fname, thisItem?.lname].join(" ");
 
-  const { contacts, events, orgs } = groupData;
+  const { contacts, events, orgs } = dummyGroupData;
 
   const displayField = (thisItem, field) => thisItem?.[field];
   const displayItemMap = (thisItem, field, arrOfObjs) => {

@@ -87,22 +87,23 @@
 
 const orgs = [
   {
-    id: "1",
+    id: "a1",
     name: "Abel's Organization",
-    workFoci: ["2", "4"],
+    sector: 1,
+    foci: ["2", "4"],
   },
   {
-    id: "2",
+    id: "b2",
     name: "Babies for Boomerangs",
     workFoci: ["4"],
   },
   {
-    id: "3",
+    id: "c3",
     name: "Catch Me!",
     workFoci: [],
   },
   {
-    id: "4",
+    id: "d4",
     name: "Didja Know?",
     workFoci: [],
   },
@@ -117,12 +118,12 @@ const orgs = [
     workFoci: ["4"],
   },
   {
-    id: "7",
+    id: "z7",
     name: "Gone for Good",
     workFoci: [],
   },
   {
-    id: "8",
+    id: "k8",
     name: "Hello World LLC",
     workFoci: [],
   },
@@ -132,7 +133,7 @@ const orgs = [
     workFoci: [],
   },
   {
-    id: "10",
+    id: "j10",
     name: "Jekyll & Hyde, Esq.",
     workFoci: ["3"],
   },
@@ -148,9 +149,13 @@ const contacts = [
     lname: "Wattana",
     age: 23,
     gender: "4",
-    // name: "Husein Wattana",
-    // orgs: ["Hello World LLC"],
-    orgIds: ["8"],
+    orgs: [
+      {
+        id: "a1",
+        name: "Abel's Organization",
+      },
+    ],
+    events: [],
   },
   {
     id: "abcd2e",
@@ -158,9 +163,13 @@ const contacts = [
     lname: "Kerper",
     age: 21,
     gender: "1",
-    // name: "Nechtan Kerper",
-    // orgs: ["Fish Tea", "Hello World LLC"],
-    orgIds: ["6", "8"],
+    orgs: [
+      {
+        id: "z7",
+        name: "Gone for Good",
+      },
+    ],
+    events: [],
   },
   {
     id: "a1bc4e",
@@ -168,9 +177,8 @@ const contacts = [
     lname: "Winthrop",
     age: 42,
     gender: "3",
-    // name: "Robert Winthrop",
-    // orgs: [],
-    orgIds: [],
+    orgs: [],
+    events: [],
   },
   {
     id: "ab1cde",
@@ -178,9 +186,13 @@ const contacts = [
     lname: "McKenzie",
     age: 24,
     gender: "1",
-    // name: "Anja McKenzie",
-    // orgs: ["Abel's Organization"],
-    orgIds: ["1"],
+    orgs: [
+      {
+        id: "a1",
+        name: "Abel's Organization",
+      },
+    ],
+    events: [],
   },
   {
     id: "a2bcde",
@@ -188,9 +200,13 @@ const contacts = [
     lname: "Iwasaki",
     age: 53,
     gender: "1",
-    // name: "Agata Iwasaki",
-    // orgs: ["Hello World LLC"],
-    orgIds: ["8"],
+    orgs: [
+      {
+        id: "k8",
+        name: "Hello World LLC",
+      },
+    ],
+    events: [],
   },
   {
     id: "abc1de",
@@ -198,9 +214,21 @@ const contacts = [
     lname: "Jansink",
     age: 52,
     gender: "1",
-    // name: "Elikapeka Jansink",
-    // orgs: ["Babies for Boomerangs", "Catch Me!", "Gone for Good"],
-    orgIds: ["2", "3", "7"],
+    orgs: [
+      {
+        id: "b2",
+        name: "Babies for Boomerangs",
+      },
+      {
+        id: "z7",
+        name: "Gone for Good",
+      },
+      {
+        id: "c3",
+        name: "Catch Me!",
+      },
+    ],
+    events: [],
   },
   {
     id: "5abcde",
@@ -208,9 +236,21 @@ const contacts = [
     lname: "Aldershof",
     age: 0,
     gender: "2",
-    // name: "Borislav Aldershof",
-    // orgs: ["Didja Know?", "Hello World LLC", "Jekyll & Hyde, Esq."],
-    orgIds: ["4", "8", "10"],
+    orgs: [
+      {
+        id: "d4",
+        name: "Didja Know?",
+      },
+      {
+        id: "k8",
+        name: "Hello World LLC",
+      },
+      {
+        id: "j10",
+        name: "Jekyll & Hyde, Esq.",
+      },
+    ],
+    events: [],
   },
   {
     id: "302948",
@@ -218,29 +258,8 @@ const contacts = [
     lname: "Sargsyan",
     age: 35,
     gender: "4",
-    // name: "Dionisie Sargsyan",
-    // orgs: [],
-    orgIds: [],
-  },
-  {
-    id: "abcdef",
-    fname: "Zaki",
-    lname: "Vroomen",
-    age: 27,
-    gender: "3",
-    // name: "Zaki Vroomen",
-    // orgs: ["Ignoramuses, Inc.", "Jekyll & Hyde, Esq."],
-    orgIds: ["9", "10"],
-  },
-  {
-    id: "hijklm",
-    fname: "Raja",
-    lname: "Gautam",
-    age: 35,
-    gender: "2",
-    // name: "Raja Gautam",
-    // orgs: ["Gone for Good"],
-    orgIds: ["7"],
+    orgs: [],
+    events: [],
   },
 ];
 
@@ -259,43 +278,186 @@ const events = [
   {
     id: "la21di-dah",
     name: "How to Stop Time",
-    type: "4",
-    subjects: ["1", "3"],
-    dates: "2022-02-01T00:00:00.000Z", // save as date.toISOString(). See note below object.
-    participants: ["abcd2e", "a2bcde", "302948", "hijklm"],
-    attendance: [],
-    completion: [], // only for trainings
+    type: 4,
+    subjects: [1, 3],
+    date: "2022-02-01",
+    participants: [
+      {
+        id: "a1bcde",
+        fname: "Husein",
+        lname: "Wattana",
+        age: 23,
+        gender: "4",
+        attendance_data: {
+          attendance: false,
+          completion: false,
+        },
+      },
+      {
+        id: "ab1cde",
+        fname: "Anja",
+        lname: "McKenzie",
+        age: 24,
+        gender: "1",
+        attendance_data: {
+          attendance: false,
+          completion: false,
+        },
+      },
+      {
+        id: "a2bcde",
+        fname: "Agata",
+        lname: "Iwasaki",
+        age: 53,
+        gender: "1",
+      },
+      {
+        id: "abc1de",
+        fname: "Elikapeka",
+        lname: "Jansink",
+        age: 52,
+        gender: "1",
+        attendance_data: {
+          attendance: false,
+          completion: false,
+        },
+      },
+      {
+        id: "302948",
+        fname: "Dionisie",
+        lname: "Sargsyan",
+        age: 35,
+        gender: "4",
+        attendance_data: {
+          attendance: false,
+          completion: false,
+        },
+      },
+    ],
   },
   {
     id: "wxyz123",
     name: "How to Restart Time",
-    type: "4",
-    subjects: ["2"],
-    dates: "2022-02-01T00:00:00.000Z",
-    participants: ["abcd2e", "hijklm"],
-    attendance: [],
-    completion: [], // only for trainings
+    type: 4,
+    subjects: [2],
+    date: "2022-02-01",
+    participants: [
+      {
+        id: "a1bcde",
+        fname: "Husein",
+        lname: "Wattana",
+        age: 23,
+        gender: "4",
+        attendance_data: {
+          attendance: false,
+          completion: false,
+        },
+      },
+      {
+        id: "abcd2e",
+        fname: "Nechtan",
+        lname: "Kerper",
+        age: 21,
+        gender: "1",
+        attendance_data: {
+          attendance: false,
+          completion: false,
+        },
+      },
+      {
+        id: "ab1cde",
+        fname: "Anja",
+        lname: "McKenzie",
+        age: 24,
+        gender: "1",
+        attendance_data: {
+          attendance: false,
+          completion: false,
+        },
+      },
+      {
+        id: "a2bcde",
+        fname: "Agata",
+        lname: "Iwasaki",
+        age: 53,
+        gender: "1",
+      },
+      {
+        id: "abc1de",
+        fname: "Elikapeka",
+        lname: "Jansink",
+        age: 52,
+        gender: "1",
+        attendance_data: {
+          attendance: false,
+          completion: false,
+        },
+      },
+    ],
   },
   {
     id: "ofibav",
     name: "Time Manipulation Support",
-    type: "3",
-    subjects: ["1", "2", "3"],
-    dates: "2022-02-02T00:00:00.000Z",
-    participants: ["abcd2e", "a2bcde", "hijklm"],
-    attendance: [],
-    completion: [], // only for trainings
+    type: 4,
+    subjects: [1, 2, 3],
+    date: "2022-02-02",
+    participants: [
+      {
+        id: "a1bcde",
+        fname: "Husein",
+        lname: "Wattana",
+        age: 23,
+        gender: "4",
+        attendance_data: {
+          attendance: false,
+          completion: false,
+        },
+      },
+      {
+        id: "a1bc4e",
+        fname: "Robert",
+        lname: "Winthrop",
+        age: 42,
+        gender: "3",
+        attendance_data: {
+          attendance: false,
+          completion: false,
+        },
+      },
+      {
+        id: "a2bcde",
+        fname: "Agata",
+        lname: "Iwasaki",
+        age: 53,
+        gender: "1",
+      },
+      {
+        id: "5abcde",
+        fname: "Borislav",
+        lname: "Aldershof",
+        age: 0,
+        gender: "2",
+        attendance_data: {
+          attendance: false,
+          completion: false,
+        },
+      },
+      {
+        id: "302948",
+        fname: "Dionisie",
+        lname: "Sargsyan",
+        age: 35,
+        gender: "4",
+        attendance_data: {
+          attendance: false,
+          completion: false,
+        },
+      },
+    ],
   },
 ];
 
-// note: have to make the date first before casting to ISO String
-// don't forget the 'new' or it won't work
-// remember months are 0 indexed when creating new Dates! :( Month 01 is Feb!
-// nd = new Date(2022, 01, 1)
-// nd.toISOString()
-// => '2022-02-01T00:00:00.000Z'
-
-export const groupData = {
+export const dummyGroupData = {
   contacts: contacts,
   events: events,
   indicators: indicators,

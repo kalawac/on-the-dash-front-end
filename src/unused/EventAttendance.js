@@ -6,7 +6,7 @@ import { FaCheck, FaTimes } from "react-icons/fa";
 import "./EventAttendance.css";
 
 import EACheckbox from "../components/EACheckbox";
-import { groupData } from "../components/DummyData";
+import { dummyGroupData } from "../components/DummyData";
 
 const EventAttendance = () => {
   // create clean-looking three column layout (flexR, 3 divs, no wrap)
@@ -20,10 +20,10 @@ const EventAttendance = () => {
   const saAttRef = useRef(null);
   const saCompRef = useRef(null);
 
-  const [thisData] = groupData.events.filter((e) => e.id === itemId);
+  const [thisData] = dummyGroupData.events.filter((e) => e.id === itemId);
 
   const participants = thisData?.participants;
-  const { contacts } = groupData;
+  const { contacts } = dummyGroupData;
 
   const makeParticipantObj = (arr) =>
     Object.fromEntries(arr.map((id) => [id, true]));
