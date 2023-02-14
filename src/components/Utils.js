@@ -18,7 +18,7 @@ import { dummyGroupData } from "./DummyData";
 // eventSubjects -- object of all subjects in selectOptions.subjects,
 //     key: subject id, value: subject name
 // eventSubjectsArr -- array of subject objects with id and name key-value pairs
-// eventType -- object of all event types in selectOptions.eventType,
+// eventType -- object of all event types in selectOptions.type,
 //     key: event type id, value: event type name
 // indDisaggregatesArr -- array of indicator disaggregate objects with id and name key-value pairs
 // indReportFreq -- object of all options in selectOptions.reportFreq,
@@ -49,14 +49,12 @@ export const modelColumns = {
   events: {
     id: nullFunc,
     name: InputText,
-    eventType: SingleSelectField,
+    type: SingleSelectField,
     subjects: MultiSelectField,
     // num_days: SingleSelectField, // just do one day at a time
     // consecutive: SingleSelectField, // are the days consective? Yes / No (may be better as radio button but let's work with this for now)
-    dates: InputDate, // just doing one day for now. eventually needs to capture an array of dates -- maybe 1, maybe multiple non-consecutive, maybe multiple consecutive
+    date: InputDate, // just doing one day for now. eventually needs to capture an array of dates -- maybe 1, maybe multiple non-consecutive, maybe multiple consecutive
     participants: MultiSelectField, // will have to make from participant data
-    attended: viewOnlyMulti, // will have to make from participant data
-    completed: viewOnlyMulti, // will have to make from participant data
   },
   indicators: {
     id: nullFunc,
@@ -97,14 +95,12 @@ export const modelColumnsRequired = {
   },
   events: {
     name: true,
-    eventType: true,
+    type: true,
     subjects: false,
     // num_days: true,
     // consecutive: true,
-    dates: true,
+    date: true,
     participants: false,
-    attended: false,
-    completed: false,
   },
   indicators: {
     irn: true, // irn generates ind_name, ind_cat, standard, definition, data_type and conditions in the DB
@@ -147,8 +143,6 @@ const specialDisplay = {
     id: nullDisplay,
     subjects: listItems,
     participants: listItems,
-    attended: listItems,
-    completed: listItems,
   },
   indicators: {
     id: nullDisplay,
@@ -174,7 +168,7 @@ export const formLabels = {
   completed: "Completed Training",
   // contactIds: "Associated Contacts",
   dataSource: "Data Source(s)",
-  dates: "Date",
+  date: "Date",
   definition: "Indicator Definition",
   disaggregates: "Disaggregates",
   events: "Events",
@@ -190,7 +184,7 @@ export const formLabels = {
   reportFreq: "Reporting Frequency",
   sector: "Sector",
   subjects: "Subject(s) Covered",
-  eventType: "Event Type",
+  type: "Event Type",
   foci: "Main Work Focus/Foci",
   y1Target: "Year 1 Target",
   y2Target: "Year 2 Target",
@@ -225,7 +219,7 @@ export const selectOptions = {
     { id: "3", name: "Main Work Focus" },
   ],
   events: dummyGroupData.events,
-  eventType: [
+  type: [
     {
       id: "1",
       name: "Conference/Forum",
@@ -408,12 +402,14 @@ export const eventSubjects = getIdNameObj(selectOptions.subjects);
 
 export const eventSubjectsArr = selectOptions.subjects;
 
-export const eventType = getIdNameObj(selectOptions.eventType);
+export const eventType = getIdNameObj(selectOptions.type);
 
 export const indDisaggregatesArr = selectOptions.disaggregates;
 
 export const indReportFreq = getIdNameObj(selectOptions.reportFreq);
 
 export const indCalcFreq = getIdNameObj(selectOptions.calcFreq);
+
+export const orgSector = getIdNameObj(selectOptions.sector);
 
 export const orgWorkFocusArr = selectOptions.foci;

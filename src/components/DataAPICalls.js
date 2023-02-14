@@ -4,14 +4,15 @@ import { dummyGroupData } from "./DummyData";
 const kBaseUrl = process.env.REACT_APP_BE_URL;
 
 export const getAllContactsAPI = async (searchParams = {}) => {
-  // console.log("yo! in getAllContactsAPI");
+  console.log("yo! in getAllContactsAPI");
   const paramArr = Object.entries(searchParams).filter(
     ([_, value]) => value != null
   );
   const location = `${kBaseUrl}`.concat("/contacts");
+  console.log(location);
 
   if (paramArr.length > 0) {
-    // console.log("in the sp try block");
+    console.log("in the sp try block");
 
     const queries = Object.fromEntries(
       Object.entries(searchParams).filter(([_, value]) => value != null)
@@ -26,8 +27,7 @@ export const getAllContactsAPI = async (searchParams = {}) => {
       console.log(err);
     }
   } else {
-    // console.log("in the straight path try block");
-    // console.log(location);
+    console.log("in the straight path try block");
     try {
       const response = await axios.get(location);
       return response.data;
@@ -38,10 +38,12 @@ export const getAllContactsAPI = async (searchParams = {}) => {
 };
 
 export const getAllOrgsAPI = async (searchParams = {}) => {
+  console.log("yo! in getAllOrgsAPI");
   const paramArr = Object.entries(searchParams).filter(
     ([_, value]) => value != null
   );
   const location = `${kBaseUrl}`.concat("/orgs");
+  console.log(location);
 
   if (paramArr.length > 0) {
     const queries = Object.fromEntries(

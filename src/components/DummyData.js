@@ -95,47 +95,47 @@ const orgs = [
   {
     id: "b2",
     name: "Babies for Boomerangs",
-    workFoci: ["4"],
+    foci: ["4"],
   },
   {
     id: "c3",
     name: "Catch Me!",
-    workFoci: [],
+    foci: [],
   },
   {
     id: "d4",
     name: "Didja Know?",
-    workFoci: [],
+    foci: [],
   },
   {
     id: "5",
     name: "Elephant",
-    workFoci: ["1", "2", "4"],
+    foci: ["1", "2", "4"],
   },
   {
     id: "6",
     name: "Fish Tea",
-    workFoci: ["4"],
+    foci: ["4"],
   },
   {
     id: "z7",
     name: "Gone for Good",
-    workFoci: [],
+    foci: [],
   },
   {
     id: "k8",
     name: "Hello World LLC",
-    workFoci: [],
+    foci: [],
   },
   {
     id: "9",
     name: "Ignoramuses, Inc.",
-    workFoci: [],
+    foci: [],
   },
   {
     id: "j10",
     name: "Jekyll & Hyde, Esq.",
-    workFoci: ["3"],
+    foci: ["3"],
   },
 ];
 

@@ -38,8 +38,6 @@ function App() {
   const loadData = () => {
     return {
       csvMode: csvMode,
-      // appData: groupData,
-      // loadingStatus: loading,
     };
   };
 

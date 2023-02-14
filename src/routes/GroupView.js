@@ -121,11 +121,8 @@ const GroupView = () => {
       const label = el?.name ?? [el?.fname, el?.lname].join(" ");
 
       return (
-        <Link to={`${el.id}`} className="item">
-          <li
-            key={el.id}
-            className="lgi list-group-item list-group-item-action"
-          >
+        <Link to={`${el.id}`} className="item" key={el.id}>
+          <li className="lgi list-group-item list-group-item-action">
             {label}
           </li>
         </Link>
