@@ -75,6 +75,7 @@ const GroupView = () => {
 
   let [formState, setFormState] = useState({
     selectValue: "default",
+    searchBar: "",
     searchParams: kSearchParamMenu,
   });
 
@@ -112,9 +113,16 @@ const GroupView = () => {
     );
   }
 
-  const thisData = groupData[groupName];
+  const timeoutFunction = () => {
+    setLoading(false);
+  };
 
-  console.log(thisData);
+  let thisData = groupData?.[groupName] ?? [];
+
+  if (thisData === undefined || thisData === []) {
+    setLoading(true);
+    setTimeout(timeoutFunction, 2000);
+  }
 
   const getList = (groupArr) => {
     return groupArr.map((el) => {
@@ -130,17 +138,21 @@ const GroupView = () => {
     });
   };
 
+  const handleTyping = (event) => {
+    const fieldValue = event.target.value;
+    const newFormData = { ...formState, searchBar: fieldValue };
+    setFormState(newFormData);
+  };
+
   const handleSort = async (event) => {
     event.preventDefault();
     const newSearchParams = { ...formState.searchParams };
-    console.log(newSearchParams);
 
     newSearchParams[groupName].sort =
       event.target.value === "default" ? null : event.target.value;
-    console.log(newSearchParams);
 
     const newSelectValue = event.target.value;
-    console.log(newSelectValue);
+
     setFormState({
       selectValue: newSelectValue,
       searchParams: newSearchParams,
@@ -152,6 +164,58 @@ const GroupView = () => {
     setGroupData(newGroupData);
   };
 
+  const handleAdvancedSearch = async (event, formData) => {
+    event.preventDefault();
+    const newSearchParams = { ...formState.searchParams };
+    newSearchParams[groupName] = formData;
+
+    const queries = Object.entries(formData).filter(
+      ([_, value]) => value != null
+    );
+
+    const queryWriteUp = queries.reduce((accumulator, currentValue) => {
+      const [key, value] = currentValue;
+      return accumulator.concat([" ", `${key}:${value}`]);
+    }, "");
+
+    setFormState({
+      ...formState,
+      searchBar: queryWriteUp,
+      searchParams: newSearchParams,
+    });
+    const apiCall = kGroupAPICall[groupName];
+    const updatedData = await apiCall(formState.searchParams[groupName]);
+    const newGroupData = { ...groupData };
+    newGroupData[groupName] = updatedData;
+    setGroupData(newGroupData);
+  };
+
+  const handleSimpleSearch = async (event) => {
+    event.preventDefault();
+    const newSearchParams = { ...formState.searchParams };
+    newSearchParams[groupName].name = formState.searchBar;
+
+    setFormState({
+      ...formState,
+      searchParams: newSearchParams,
+    });
+    const apiCall = kGroupAPICall[groupName];
+    const updatedData = await apiCall(formState.searchParams[groupName]);
+    const newGroupData = { ...groupData };
+    newGroupData[groupName] = updatedData;
+    setGroupData(newGroupData);
+  };
+
+  const clearSearch = async (event) => {
+    const newformState = {
+      ...formState,
+      searchBar: "",
+      searchParams: kSearchParamMenu,
+    };
+    setFormState(newformState);
+    return navigate("/".concat(groupName));
+  };
+
   const selectFieldValue = selectField[groupName];
   const selectFormData = {};
   selectFormData[selectFieldValue] = formState.selectValue;
@@ -160,20 +224,23 @@ const GroupView = () => {
     <div id="gl" className="flexR">
       <div id="listing" className="container">
         <h1>{kTitle[groupName]}</h1>
-        {/* <form id="search-form" role="search">
+        <form id="search-form" role="search">
           <input
-            id="q"
+            id="glSearch"
             aria-label="Search contacts"
             placeholder="Search"
             type="search"
-            name="q"
+            name="glSearch"
+            onInput={handleTyping}
           />
-          <div id="search-spinner" aria-hidden hidden={true} />
-          <div className="sr-only" aria-live="polite"></div>
+          <button id="submitSearch" onClick={handleSimpleSearch}>
+            Search
+          </button>
+          <button id="clearSearch" onClick={clearSearch}>
+            Clear Search
+          </button>
         </form>
-        <Link to={"somewhereLOL"}>
-          Advanced Search Options
-        </Link> */}
+        <Link to={`search`}>Advanced Search Options</Link>
         <SingleSelectField
           divId="1"
           field={selectFieldValue}
@@ -190,7 +257,7 @@ const GroupView = () => {
         </ul>
       </div>
       <div id="details" className="flexC">
-        <Outlet context={[thisData]} />
+        <Outlet context={[thisData, formState, handleAdvancedSearch]} />
       </div>
     </div>
   );

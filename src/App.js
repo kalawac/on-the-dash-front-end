@@ -15,6 +15,7 @@ import GroupDetail from "./routes/GroupDetail";
 import GroupView from "./routes/GroupView";
 
 import AddGroupData from "./routes/AddGroupData";
+import AdvancedSearch from "./routes/AdvancedSearch";
 import Dashboard from "./routes/Dashboard";
 import EditGroupData from "./routes/EditGroupData";
 import EventAttendance2 from "./routes/EventAttendance2";
@@ -74,28 +75,29 @@ function App() {
             // errorElement={<FourOhFour />} // change back at end
           >
             <Route
+              path="search"
+              element={<AdvancedSearch />}
+              errorElement={<ErrorPage />}
+            />
+            <Route
               path="new"
               element={<AddGroupData />}
-              loader={DummyFunction}
               errorElement={<ErrorPage />}
             />
             <Route
               path=":itemId"
               element={<GroupDetail />}
-              loader={DummyFunction}
               errorElement={<ErrorPage />} // change to FourOhFour at end
             />
             <Route
               path=":itemId/edit"
               element={<EditGroupData />}
-              loader={DummyFunction}
               errorElement={<ErrorPage />}
             />
           </Route>
           <Route
             path="/events/:itemId/attendance"
             element={<EventAttendance2 />}
-            loader={DummyFunction}
             errorElement={<FourOhFour />}
           />
           <Route path="/404" element={<FourOhFour />} />

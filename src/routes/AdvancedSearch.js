@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import {
+  Link,
+  useParams,
+  useNavigate,
+  useOutletContext,
+} from "react-router-dom";
 
 import { FaTimes } from "react-icons/fa";
 
@@ -39,28 +44,12 @@ import {
 //   );
 // };
 
-const AddGroupData = () => {
-  // TBD: Add protection (or check to ensure protection) so last name
-  // must have at least one character. some places have no first name.
-  // maybe add a warning pop-up to confirm that?
-
+const AdvancedSearch = () => {
   const { groupName } = useParams();
   const navigate = useNavigate();
+  const [formState, handleAdvancedSearch] = useOutletContext();
 
-  const startingState = () => {
-    const stateObj = {};
-    //
-    for (const [key, value] of Object.entries(modelColumns?.[groupName])) {
-      if (value.name !== "nullFunc") {
-        stateObj[key] = value.name === "MultiSelectField" ? [] : "";
-      }
-    }
-    return stateObj;
-  };
-
-  const [formData, setFormData] = useState(startingState());
-
-  //
+  const [formData, setFormData] = useState(formState);
 
   const handleSingleChange = (event) => {
     const fieldValue = event.target.value;
@@ -94,7 +83,9 @@ const AddGroupData = () => {
     // Exclude ID from the mapping list before mapping.
     // Note: As an extra guard, ID and other forms are also excluded by not
     // including them in the objects or by putting in NullFunc
-    const itemArr = Object.keys(formData).filter((e) => e !== "id");
+    const itemArr = Object.keys(formData).filter(
+      (e) => e !== "sort" || e !== "OR"
+    );
 
     const formArr = itemArr.map((field, index) => {
       const fieldLabel = formLabels?.[field];
@@ -119,10 +110,11 @@ const AddGroupData = () => {
   };
 
   const submitForm = (formData) => {
+    console.log("submitting form");
     if (formData?.age === "") {
       formData.age = 0;
     }
-
+    console.log(formData);
     return navigate(`..`);
   };
 
@@ -134,10 +126,24 @@ const AddGroupData = () => {
   return (
     <div id="ag">
       <section id="addContent" className="flexC">
+        <h2>Advanced Search Criteria</h2>
         <form onSubmit={handleSubmit}>
           {createForm(formData)}
-
-          <button id="submit">Submit</button>
+          <div className="selectDiv">
+            <label htmlFor="OR"></label>
+            <select
+              id="logicalSelect"
+              name="OR"
+              defaultValue={false}
+              onChange={() => handleAdvancedSearch(formData)}
+            >
+              <option value={false}>
+                AND: Results should meet all criteria
+              </option>
+              <option value={true}>OR: Results should meet any criteria</option>
+            </select>
+          </div>
+          <button id="submit">Search</button>
         </form>
       </section>
       <section id="dmAg" className="flexC">
@@ -153,4 +159,4 @@ const AddGroupData = () => {
   );
 };
 
-export default AddGroupData;
+export default AdvancedSearch;

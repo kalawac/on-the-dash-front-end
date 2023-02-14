@@ -4,10 +4,10 @@ import "./SingleSelectField.css";
 
 const mapOptions = (field, formData) => {
   const optionArr = selectOptions?.[field] ?? [];
-  // console.log(optionArr);
+  //
 
   return optionArr.map((optObj, index) => {
-    // console.log("mapping options");
+    //
     const label = optObj?.name ?? [optObj?.fname, optObj?.lname].join(" ");
 
     return (

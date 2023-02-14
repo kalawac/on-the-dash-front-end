@@ -66,7 +66,7 @@ const EditGroupData = () => {
     const selectedVals = Object.values(event.target.selectedOptions).map(
       (o) => o.value
     );
-    // console.log(selectedVals);
+    //
     const fieldName = event.target.name;
     setFormData({ ...formData, [fieldName]: selectedVals });
   };
@@ -98,8 +98,8 @@ const EditGroupData = () => {
         required: modelColumnsRequired?.[groupName]?.[field],
       };
 
-      // console.log(props);
-      // console.log(typeof webPart);
+      //
+      //
 
       return webPart(props);
     });

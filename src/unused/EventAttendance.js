@@ -71,8 +71,6 @@ const EventAttendance = () => {
   };
 
   const handleChange = (event) => {
-    console.log("change!");
-    console.log(event.target);
     const fieldValue = event.target.value; // participant Id
     const fieldName = event.target.name; // attendance or completion
 
@@ -103,7 +101,6 @@ const EventAttendance = () => {
   };
 
   const attHandleSelectAll = (event) => {
-    console.log("change A select all!");
     if (selectAllState.attendanceAll === 1) {
       uncheckAll("attendance");
       setSelectAllState.attendanceAll = 0;
@@ -114,8 +111,6 @@ const EventAttendance = () => {
   };
 
   const compHandleSelectAll = (event) => {
-    console.log("change C select all!");
-
     if (selectAllState.completionAll === 1) {
       uncheckAll("completion");
       setSelectAllState.completionAll = 0;
@@ -127,14 +122,13 @@ const EventAttendance = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("submitting");
+
     const attArr = Object.keys(formData.attendance);
     const compArr = Object.keys(formData.completion);
     const requestBody = {
       attendance: attArr,
       completion: compArr,
     };
-    console.log(requestBody);
   };
 
   const contactIdstoNames = () => {

@@ -20,16 +20,16 @@ const GroupDetail = () => {
   const [thisData] = useOutletContext(); // all the data for the group
   const { groupName, itemId } = useParams();
 
+  if (!thisData) {
+    return <div id="gd"></div>;
+  }
+
   const [thisItem] = thisData.filter((item) => {
     return item.id === itemId;
   });
 
-  console.log(thisItem);
-
   const itemName =
     thisItem?.name ?? [thisItem?.fname, thisItem?.lname].join(" ");
-
-  console.log(itemName);
 
   const displayField = (thisItem, field) => thisItem?.[field];
   const displayArrMap = (thisItem, field, arrOfObjs) => {
@@ -123,16 +123,15 @@ const GroupDetail = () => {
     let itemArr = Object.keys(thisItem).filter(
       (e) => e !== "id" && e !== "name"
     );
-    console.log(itemArr);
+
     // // Exclude completion if not a training event
     // if (groupName === "events" && thisItem?.type !== "4") {
     //   itemArr = itemArr.filter((e) => e !== "completion");
     // }
 
     const fieldArr = itemArr.map((field, index) => {
-      console.log(field);
       const fieldLabel = formLabels?.[field];
-      console.log(fieldLabel);
+
       const info = modelDisplay?.[groupName]?.[field](thisItem, field);
       const displayFunction = displayColumns(groupName, field);
       const displayedData = displayFunction(info);
