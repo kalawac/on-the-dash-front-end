@@ -98,7 +98,7 @@ function App() {
           <Route
             path="/events/:itemId/attendance"
             element={<EventAttendance2 />}
-            errorElement={<FourOhFour />}
+            errorElement={<ErrorPage />}
           />
           <Route path="/404" element={<FourOhFour />} />
         </Route>

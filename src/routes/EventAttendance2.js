@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
 import { FaCheck, FaTimes } from "react-icons/fa";
@@ -6,26 +6,31 @@ import { FaCheck, FaTimes } from "react-icons/fa";
 import "./EventAttendance2.css";
 
 import EventAttendanceRow from "../components/EventAttendanceRow";
-import { updateEvent } from "../components/DataAPICalls";
-import { dummyGroupData } from "../components/DummyData";
+import { getAllEventsAPI, updateEvent } from "../components/DataAPICalls";
 
 const EventAttendance2 = () => {
   // TBD: save data to cache --> optional reach
 
   const { itemId } = useParams();
+
   const navigate = useNavigate();
   const saAttRef = useRef(null); // check to see if we still need this at the end
   const saCompRef = useRef(null); // check to see if we still need this at the end
 
-  const [thisData] = dummyGroupData.events.filter((e) => e.id === itemId);
+  let [thisData, setThisData] = useState([]);
+  let [participants, setParticipants] = useState([]);
 
-  const participants = thisData?.participants;
+  useEffect(
+    () => async () => {
+      const events = await getAllEventsAPI();
 
-  const participantNames = participants.map((el) =>
-    [el?.fname, el?.lname].join(" ")
+      const thisEvent = events.filter((e) => e.id === itemId);
+
+      setParticipants(thisEvent[0].participants);
+      setThisData(thisEvent[0]);
+    },
+    [itemId]
   );
-
-  const participantIdName = participants.map((el) => [el.id, el.name]);
 
   const [formData, setFormData] = useState({
     attendance: Object.fromEntries(
@@ -55,8 +60,6 @@ const EventAttendance2 = () => {
   // the checkbox will set its own state and just tell this component whether or not to set it true next time
 
   const handleSubmit = () => {
-    console.log("submitting");
-
     const updatedEvent = thisData;
 
     updatedEvent.participants.map(
@@ -66,10 +69,15 @@ const EventAttendance2 = () => {
           completion: formData.completion[el.id],
         })
     );
-
+    console.log(updatedEvent);
     updateEvent(updatedEvent);
     return navigate("/");
   };
+
+  const participantIdName = participants.map((el) => [
+    el.id,
+    [el.fname, el.lname].join(" "),
+  ]);
 
   const mapRows = () => {
     if (participantIdName === []) {

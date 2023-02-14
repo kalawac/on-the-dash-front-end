@@ -23,7 +23,10 @@ const DetailMenu = () => {
         </button>
       </Link>
       <Link to={".."}>
-        <button title="Delete" onClick={deleteInstance(groupName, itemId)}>
+        <button
+          title="Delete"
+          onClick={() => deleteInstance(groupName, itemId)}
+        >
           <span>
             <FaTrashAlt className="fa-icon" />
           </span>

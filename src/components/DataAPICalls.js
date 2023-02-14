@@ -224,10 +224,11 @@ export const updateOrg = async (data) => {
 
 export const updateEvent = async (data) => {
   const subjectIntArr = data.subjects.map((el) => parseInt(el));
+  const dateInstance = new Date(data.date);
 
   const requestBody = {
     name: data.name,
-    date: data.date.toISOString().slice(0, 10),
+    date: dateInstance.toISOString().slice(0, 10),
     subjects: subjectIntArr,
     type: parseInt(data.type),
     participants: data.participants,
