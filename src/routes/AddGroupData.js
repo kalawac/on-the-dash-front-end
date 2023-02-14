@@ -10,34 +10,18 @@ import {
   modelColumns,
   modelColumnsRequired,
 } from "../components/Utils";
+import {
+  createContact,
+  createEvent,
+  createOrg,
+} from "../components/DataAPICalls";
 
-// const handleSubmit = async (formData) => {
-//   const requestBody = formData;
-
-//   try {
-//     const response = await axios.post(`${kBaseUrl}/users`, requestBody);
-//     return setLoggedIn({
-//       userId: response.data.id,
-//       repeatLogin: false,
-//       repeatSignUp: false,
-//     });
-//   } catch (err) {
-//     return setLoggedIn({
-//       userId: null,
-//       repeatLogin: true,
-//       repeatSignUp: false,
-//     });
-//   }
-// };
-
-// const isError = () => {
-//   return (
-//     <p className="error">
-//       This information doesn't seem to be in the correct format. Please check it
-//       and try again.
-//     </p>
-//   );
-// };
+const kGroupAPICall = {
+  contacts: createContact,
+  // indicators: "Indicators",
+  events: createEvent,
+  orgs: createOrg,
+};
 
 const AddGroupData = () => {
   // TBD: Add protection (or check to ensure protection) so last name
@@ -122,7 +106,8 @@ const AddGroupData = () => {
     if (formData?.age === "") {
       formData.age = 0;
     }
-
+    const groupAPIcall = kGroupAPICall[groupName];
+    groupAPIcall(formData);
     return navigate(`..`);
   };
 

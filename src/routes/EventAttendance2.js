@@ -6,6 +6,7 @@ import { FaCheck, FaTimes } from "react-icons/fa";
 import "./EventAttendance2.css";
 
 import EventAttendanceRow from "../components/EventAttendanceRow";
+import { updateEvent } from "../components/DataAPICalls";
 import { dummyGroupData } from "../components/DummyData";
 
 const EventAttendance2 = () => {
@@ -19,28 +20,20 @@ const EventAttendance2 = () => {
   const [thisData] = dummyGroupData.events.filter((e) => e.id === itemId);
 
   const participants = thisData?.participants;
-  const { contacts } = dummyGroupData;
 
-  const participantNames = participants.map((id) =>
-    contacts
-      .filter((el) => el.id === id)
-      .map((el) => el?.name ?? [el?.fname, el?.lname].join(" "))
+  const participantNames = participants.map((el) =>
+    [el?.fname, el?.lname].join(" ")
   );
 
-  const participantIdName = participants.map((id, index) => [
-    id,
-    participantNames[index],
-  ]);
-
-  const makeParticipantStateObj = (arr) => {
-    const kPO = Object.fromEntries(participants.map((id) => [id, false]));
-    arr.forEach((pId) => (kPO[pId] = true));
-    return kPO;
-  };
+  const participantIdName = participants.map((el) => [el.id, el.name]);
 
   const [formData, setFormData] = useState({
-    attendance: makeParticipantStateObj(thisData.attendance),
-    completion: makeParticipantStateObj(thisData.completion),
+    attendance: Object.fromEntries(
+      participants.map((el) => [el.id, el.attendance_data.attendance])
+    ),
+    completion: Object.fromEntries(
+      participants.map((el) => [el.id, el.attendance_data.completion])
+    ),
   });
 
   // const [selectAllState, setSelectAllState] = useState({
@@ -49,10 +42,6 @@ const EventAttendance2 = () => {
   // });
 
   const handleClick = (fieldName, pId) => {
-    console.log("click!");
-    console.log(fieldName);
-    console.log(pId);
-
     const newFormData = { ...formData };
 
     newFormData[fieldName][pId] = !formData[fieldName][pId];
@@ -68,19 +57,17 @@ const EventAttendance2 = () => {
   const handleSubmit = () => {
     console.log("submitting");
 
-    const attArr = Object.entries(formData.attendance)
-      .filter((e) => e[1] === true)
-      .map((e) => e[0]);
+    const updatedEvent = thisData;
 
-    const compArr = Object.entries(formData.completion)
-      .filter((e) => e[1] === true)
-      .map((e) => e[0]);
+    updatedEvent.participants.map(
+      (el) =>
+        (el.attendance_data = {
+          attendance: formData.attendance[el.id],
+          completion: formData.completion[el.id],
+        })
+    );
 
-    const requestBody = {
-      attendance: attArr,
-      completion: compArr,
-    };
-    console.log(requestBody);
+    updateEvent(updatedEvent);
     return navigate("/");
   };
 

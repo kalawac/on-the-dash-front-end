@@ -1,9 +1,11 @@
 import { FaPlus, FaPencilAlt, FaTrashAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
+import { deleteInstance } from "./DataAPICalls";
 import "./DetailMenu.css";
 
 const DetailMenu = () => {
+  const { groupName, itemId } = useParams();
   return (
     <div id="dm2" className="flexC">
       <Link to={"../new"}>
@@ -21,7 +23,7 @@ const DetailMenu = () => {
         </button>
       </Link>
       <Link to={".."}>
-        <button title="Delete">
+        <button title="Delete" onClick={deleteInstance(groupName, itemId)}>
           <span>
             <FaTrashAlt className="fa-icon" />
           </span>

@@ -238,3 +238,35 @@ export const updateEvent = async (data) => {
     console.log(err);
   }
 };
+
+export const deleteInstance = async (groupName, id) => {
+  try {
+    await axios.delete(`${kBaseUrl}/${groupName}/${id}`);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteContact = async (id) => {
+  try {
+    await axios.delete(`${kBaseUrl}/contacts/${id}`);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteOrg = async (id) => {
+  try {
+    await axios.delete(`${kBaseUrl}/orgs/${id}`);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteEvent = async (data) => {
+  try {
+    await axios.put(`${kBaseUrl}/events/${data.id}`);
+  } catch (err) {
+    console.log(err);
+  }
+};
